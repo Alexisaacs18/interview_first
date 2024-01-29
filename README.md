@@ -9,9 +9,15 @@ A web based application boot-camp grads can use to get their dream job.
 - User can perform CRUD actions keep the data in their CRM relevant to their search.
 - User can keep track out their warm prospects for interviews.
 
+## Stretch Goals
+
+- Users can store templates for outreach.
+- Users can get redirected to a contacts linkedin page.
+- Users can have a warm contacts page.
+
 ## Wire Frame
 
-![WireFrame](./pictures/wireframe.png)
+![Wire Frame](./pictures/wireframe.png)
 
 ## Schema
 
@@ -20,3 +26,11 @@ A web based application boot-camp grads can use to get their dream job.
 ## React Tree
 
 ![React Tree](./pictures/reacttree.png)
+
+## Routes and End Points
+
+![Routes and End Points](./pictures/routesandendpoints.png)
+
+## Kanban Board
+
+![Kanban Board](./pictures/kanbanboard.png)
