@@ -16,3 +16,7 @@ A web based application boot-camp grads can use to get their dream job.
 ## Schema
 
 ![Schema](./pictures/schema.png)
+
+## React Tree
+
+![React Tree](./pictures/reacttree.png)

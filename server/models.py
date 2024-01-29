@@ -19,7 +19,7 @@ class Open_Positions(db.Model, SerializerMixin):
     id = db.Column(db.Integer, primary_key=True)
     company_id = db.Column(db.Integer, db.ForeignKey("companies.id"))
     contact_id = db.Column(db.Integer, db.ForeignKey("contact.id"))
-    position_title = db.Column(db.String)
+    position = db.Column(db.String)
     salary_range = db.Column(db.String)
     date_posted = db.Column(db.DateTime, default=datetime.utcnow)
     position_status = db.Column(db.Boolean)
