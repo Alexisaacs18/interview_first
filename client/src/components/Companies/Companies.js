@@ -1,15 +1,16 @@
 import React from "react";
 import NavBar from "./NavBar";
+import CompaniesBody from "./CompaniesBody";
 
-function OpenPositions() {
+function Companies() {
 
 
     return (
         <div>
             <NavBar />
-            <p> open positionsssss</p>
+            <CompaniesBody />
         </div>
     )
 }
 
-export default OpenPositions
+export default Companies
