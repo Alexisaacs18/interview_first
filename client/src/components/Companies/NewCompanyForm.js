@@ -5,7 +5,7 @@ function NewCompanyForm() {
 
     return (
         <div>
-            <p> Form</p>
+            <p></p>
         </div>
     )
 }
