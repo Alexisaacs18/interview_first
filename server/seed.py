@@ -100,7 +100,7 @@ if __name__ == '__main__':
                 position="Front End Engineer",
                 salary_range="$60k - $80k",
                 date_posted=datetime(2024, 1, 15),
-                position_status=True
+                position_status=False
             )
         ]
 

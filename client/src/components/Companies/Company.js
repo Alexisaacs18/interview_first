@@ -23,9 +23,6 @@ function Company() {
     const positionsForCompanies = openPositions.filter((position) =>
         (position.company_id === company.id))
 
-
-    console.log(positionsForCompanies)
-
     return (
         <div>
             <div>
