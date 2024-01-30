@@ -18,12 +18,12 @@ function NavBar() {
 
 
     return (
-        <nav>
+        <nav className="nav">
             <ul>
-                <h1>Hunt</h1>
-                <button onClick={navigateToCompanies}>Companies</button>
-                <button onClick={navigateToOpenPositions}>Open Positions</button>
-                <button onClick={navigateToContacts}>Contacts</button>
+                <li><h1>Interview First</h1></li>
+                <li><button onClick={navigateToCompanies}>Companies</button></li>
+                <li><button onClick={navigateToOpenPositions}>Open Positions</button></li>
+                <li><button onClick={navigateToContacts}>Contacts</button></li>
             </ul>
         </nav>
     )
