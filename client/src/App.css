@@ -52,6 +52,28 @@
   margin-right: 20px;
 }
 
-.companyCard li {
+.companyCard ul {
+  text-align: center;
+}
+
+.companyCard p {
+  text-align: center;
+}
+
+.contactCard {
+  background-color: white;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  width: 300px;
+  display: inline-block;
+  margin-right: 20px;
+}
+
+.contactCard ul {
+  text-align: center;
+}
+
+
+.contactCard p {
   text-align: center;
 }

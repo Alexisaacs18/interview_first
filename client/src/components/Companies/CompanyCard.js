@@ -1,4 +1,5 @@
 import React from "react";
+import Company from "./Company";
 
 function CompanyCard({ company }) {
 
