@@ -55,18 +55,18 @@ if __name__ == '__main__':
         ]
 
         db.session.add_all(outreach)
-        db.session.commit
+        db.session.commit()
 
         contacts = [
             Contact(
-                outreach_id = outreach[1].id,
+                outreach_id = outreach[0].id,
                 name = "Robert Horvick",
                 linkedin_url = "https://www.linkedin.com/in/roberthorvick/",
                 position = "Engineering Manager at Google",
                 length_of_position = "10 Months"
             ),
             Contact(
-                outreach_id = outreach[0].id,
+                outreach_id = outreach[1].id,
                 name = "Patrick Delfert",
                 linkedin_url = "https://www.linkedin.com/in/delfert/",
                 position = "Engineering Manager at Google",
