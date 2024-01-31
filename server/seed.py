@@ -43,14 +43,12 @@ if __name__ == '__main__':
                 sent_messages = 1,
                 replied = False,
                 tone = False,
-                recent_interaction = datetime(2024, 1, 26)
             ),
             Outreach(
                 connected = True,
                 sent_messages = 3,
                 replied = True,
                 tone = True,
-                recent_interaction = datetime(2024, 1, 28)
             )
         ]
 
@@ -83,7 +81,6 @@ if __name__ == '__main__':
                 contact_id=contacts[0].id,
                 position="Technical Support Engineer",
                 salary_range="$70k - $90k",
-                date_posted=datetime(2024, 1, 11),
                 position_status=True
             ),
             Open_Positions(
@@ -91,7 +88,6 @@ if __name__ == '__main__':
                 contact_id=contacts[1].id,
                 position="Software Engineer 1",
                 salary_range="$80k - $100k",
-                date_posted=datetime(2024, 1, 15),
                 position_status=True
             ),
             Open_Positions(
@@ -99,7 +95,6 @@ if __name__ == '__main__':
                 contact_id=contacts[0].id,
                 position="Front End Engineer",
                 salary_range="$60k - $80k",
-                date_posted=datetime(2024, 1, 15),
                 position_status=False
             )
         ]

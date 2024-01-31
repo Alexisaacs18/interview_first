@@ -21,7 +21,6 @@ function Contact() {
                 <p>Messages Sent: {prop.outreach.sent_messages}</p>
                 {prop.outreach.replied ? <p>Reply Received</p> : <p>No Reply</p>}
                 {prop.outreach.tone ? <p>Tone: Positive</p> : <p>Tone: Negative or No Reply</p>}
-                <p>Recent Interaction: {prop.outreach.recent_interaction}</p>
             </div>
         </div>
     )

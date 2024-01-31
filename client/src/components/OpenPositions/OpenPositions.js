@@ -1,6 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import OpenPositionCard from "./OpenPositionCard";
+import NewOpenPositionForm from "./NewOpenPositionFrom";
 
 function OpenPositions() {
 
@@ -16,11 +17,20 @@ function OpenPositions() {
             })
     }, [])
 
+    function addOpenPosition(position) {
+        setOpenPositions([...openPositions, position])
+    }
+
     return (
-        <div className="openPositionContainer">
-            {openPositions.map((position) => (
-                <OpenPositionCard key={position.id} position={position} url={url} />
-            ))}
+        <div>
+            <div className="positionFormContainer">
+                <NewOpenPositionForm addOpenPosition={addOpenPosition} />
+            </div>
+            <div className="openPositionContainer">
+                {openPositions.map((position) => (
+                    <OpenPositionCard key={position.id} position={position} url={url} />
+                ))}
+            </div>
         </div>
     )
 }

@@ -89,7 +89,6 @@ def open_positions():
             contact_id = form_data["contact_id"],
             position = form_data["position"],
             salary_range = form_data["salary_range"],
-            date_posted = form_data["date_posted"],
             position_status = form_data["position_status"]
         )
 
@@ -217,8 +216,7 @@ def outreach():
             connected = form_data["connected"],
             sent_messages = form_data["sent_messages"],
             replied = form_data["replied"],
-            tone = form_data["tone"],
-            recent_interaction = form_data["recent_interaction"]
+            tone = form_data["tone"]
         )
 
         db.session.add(new_outreach)

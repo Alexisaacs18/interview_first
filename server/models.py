@@ -27,7 +27,6 @@ class Open_Positions(db.Model, SerializerMixin):
     contact_id = db.Column(db.Integer, db.ForeignKey("contact.id"))
     position = db.Column(db.String)
     salary_range = db.Column(db.String)
-    date_posted = db.Column(db.DateTime, default=datetime.utcnow)
     position_status = db.Column(db.Boolean)
 
     companies = db.relationship("Companies", back_populates = "open_positions")
@@ -58,7 +57,6 @@ class Outreach(db.Model, SerializerMixin):
     sent_messages = db.Column(db.Integer)
     replied = db.Column(db.Boolean)
     tone = db.Column(db.Boolean)
-    recent_interaction = db.Column(db.DateTime, default=datetime.utcnow)
 
     contacts = db.relationship("Contact", back_populates = "outreach")
 
