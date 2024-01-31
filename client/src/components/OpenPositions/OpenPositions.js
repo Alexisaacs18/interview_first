@@ -17,7 +17,7 @@ function OpenPositions() {
     }, [])
 
     return (
-        <div>
+        <div className="openPositionContainer">
             {openPositions.map((position) => (
                 <OpenPositionCard key={position.id} position={position} url={url} />
             ))}

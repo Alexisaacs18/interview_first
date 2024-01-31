@@ -21,7 +21,7 @@ function ContactCard({ contact, url }) {
 
     return (
         <div onClick={navigateToContact} className="contactCard">
-            <ul>Name: {contact.name}</ul>
+            <h3>Name: {contact.name}</h3>
             <p>Position: {contact.position}</p>
             <a href={contact.linkedin_url}>Linkedin</a>
             <p>Length of Position: {contact.length_of_position}</p>

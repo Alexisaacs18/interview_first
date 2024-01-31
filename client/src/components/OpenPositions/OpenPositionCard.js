@@ -37,9 +37,9 @@ function OpenPositionCard({ position, url }) {
 
     return (
         <div onClick={navigateToOpenPosition} className="openPositionCard">
-            <ul>Position: {position.position}</ul>
-            <p>Company: {company.name}</p>
-            <p>Contact: {contact.name}</p>
+            <h3>Position: {position.position}</h3>
+            <h4>Company: {company.name}</h4>
+            <h4>Contact: {contact.name}</h4>
             <p>Salary Range: {position.salary_range}</p>
             <p>Date Posted: {position.date_posted}</p>
             {position.position_status ? <p>Status: Open</p> : <p>Status: Closed</p>}

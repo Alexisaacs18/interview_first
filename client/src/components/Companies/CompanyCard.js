@@ -12,7 +12,7 @@ function CompanyCard({ company }) {
 
     return (
         <div onClick={navigateToCompany} className="companyCard">
-            <ul>Name: {company.name}</ul>
+            <h3>Company Name: {company.name}</h3>
             <p>Amount of Employees: {company.amount_of_employees}</p>
             <p>Open Positions: {company.total_open_positions}</p>
         </div>

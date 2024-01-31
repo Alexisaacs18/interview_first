@@ -24,7 +24,7 @@ function Company() {
         (position.company_id === company.id))
 
     return (
-        <div>
+        <div className="company">
             <div>
                 <h3>Name: {company.name}</h3>
                 <ul>Amount of Employees: {company.amount_of_employees}</ul>

@@ -1,9 +1,14 @@
+body {
+  background-image: url("../../pictures/appbackground.png");
+}
+
 .nav {
-  background-color: rgb(47, 116, 255);
+  background-image: url("../../pictures/headerBackground.png");
   align-items: center;
   color: white;
   justify-content: space-between;
   padding: 10px 20px;
+  padding-bottom: 40px;
   border-bottom: 1px solid grey;
   position: relative;
   width: 100%;
@@ -18,6 +23,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+nav h1 {
+  color: black;
 }
 
 .nav li {
@@ -43,16 +52,28 @@
   color: rgb(51, 72, 115);
 }
 
+.companyContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  padding-top: 40px;
+}
+
 .companyCard {
-  background-color: white;
-  border: 1px solid #e0e0e0;
+  background-color: rgb(179, 200, 205);
+  border: 1px solid #757575;
   border-radius: 8px;
   width: 300px;
   display: inline-block;
   margin-right: 20px;
 }
 
-.companyCard ul {
+.companyCard:hover {
+  background-color: rgb(92, 127, 129);
+}
+
+.companyCard h3 {
   text-align: center;
 }
 
@@ -60,38 +81,72 @@
   text-align: center;
 }
 
+.contactContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  padding-top: 40px;
+}
+
 .contactCard {
-  background-color: white;
-  border: 1px solid #e0e0e0;
+  background-color: rgb(179, 200, 205);
+  border: 1px solid #757575;
   border-radius: 8px;
   width: 300px;
   display: inline-block;
   margin-right: 20px;
 }
 
-.contactCard ul {
+.contactCard:hover {
+  background-color: rgb(92, 127, 129);
+}
+
+.contactCard h3 {
   text-align: center;
 }
 
+.contactCard a {
+  text-align: center;
+}
 
 .contactCard p {
   text-align: center;
 }
 
+.openPositionContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  padding-top: 40px;
+}
+
 .openPositionCard {
-  background-color: white;
-  border: 1px solid #e0e0e0;
+  background-color: rgb(179, 200, 205);
+  border: 1px solid #757575;
   border-radius: 8px;
   width: 300px;
   display: inline-block;
   margin-right: 20px;
 }
 
-.openPositionCard ul {
+.openPositionCard:hover {
+  background-color: rgb(92, 127, 129);
+}
+
+.openPositionCard h3 {
   text-align: center;
 }
 
+.openPositionCard h4 {
+  text-align: center;
+}
 
 .openPositionCard p {
+  text-align: center;
+}
+
+.company {
   text-align: center;
 }

@@ -19,7 +19,7 @@ function Companies() {
     }, [])
 
     return (
-        <div>
+        <div className="companyContainer">
             <NewCompanyForm />
             {companies.map((company) => (
                 <CompanyCard key={company.id} company={company} />
