@@ -18,13 +18,23 @@ function Companies() {
             })
     }, [])
 
+    function addCompany(company) {
+        setCompanies([
+            ...companies, company
+        ])
+    }
+
     return (
+        <div>
+            <div className="formContainer">
+        <NewCompanyForm addCompany={addCompany} />
+    </div>
         <div className="companyContainer">
-            <NewCompanyForm />
             {companies.map((company) => (
                 <CompanyCard key={company.id} company={company} />
             ))}
         </div>
+        </div >
     )
 }
 

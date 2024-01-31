@@ -3,17 +3,45 @@ from flask import make_response, request
 
 from models import db, Companies, Open_Positions, Contact, Outreach
 
-@app.route("/companies", methods=["GET"])
+@app.route("/companies", methods=["GET", "POST"])
 def companies():
 
-    companies = Companies.query.all()
+    if request.method == "GET":
 
-    companies_to_dict = [company.to_dict(rules = ("-open_positions", )) for company in companies]
+        companies = Companies.query.all()
 
-    response = make_response(
-        companies_to_dict,
-        200
-    )
+        companies_to_dict = [company.to_dict(rules = ("-open_positions", )) for company in companies]
+
+        response = make_response(
+            companies_to_dict,
+            200
+        )
+
+    elif request.method == "POST":
+
+        form_data = request.get_json()
+
+        new_company = Companies(
+            name = form_data["name"],
+            amount_of_employees = form_data["amount_of_employees"],
+            total_open_positions = form_data["total_open_positions"]
+        )
+
+        db.session.add(new_company)
+        db.session.commit()
+
+        response = make_response(
+            new_company.to_dict(),
+            201
+        )
+
+    else:
+
+        response = make_response(
+            {"error" : "method not allowed"},
+            400
+        )
+        
 
     return response
 
@@ -38,17 +66,47 @@ def company(id):
 
     return response
 
-@app.route("/open_positions", methods = ["GET"])
+@app.route("/open_positions", methods = ["GET", "POST"])
 def open_positions():
 
-    open_positions = Open_Positions.query.all()
+    if request.method == "GET":
 
-    open_positions_to_dict = [open_position.to_dict(rules = ("-companies", "-contacts")) for open_position in open_positions] 
+        open_positions = Open_Positions.query.all()
 
-    response = make_response(
-        open_positions_to_dict,
-        200
-    )
+        open_positions_to_dict = [open_position.to_dict(rules = ("-companies", "-contacts")) for open_position in open_positions] 
+
+        response = make_response(
+            open_positions_to_dict,
+            200
+        )
+
+    elif request.method == "POST":
+
+        form_data = request.get_json()
+
+        new_open_position = Open_Positions(
+            company_id = form_data["company_id"],
+            contact_id = form_data["contact_id"],
+            position = form_data["position"],
+            salary_range = form_data["salary_range"],
+            date_posted = form_data["date_posted"],
+            position_status = form_data["position_status"]
+        )
+
+        db.session.add(new_open_position)
+        db.session.commit()
+
+        response = make_response(
+            new_open_position.to_dict(),
+            201
+        )
+
+    else:
+
+        response = make_response(
+            {"error" : "method not allowed"},
+            400
+        )
 
     return response
 
@@ -73,17 +131,46 @@ def open_position(id):
 
     return response
 
-@app.route("/contacts", methods = ["GET"])
+@app.route("/contacts", methods = ["GET", "POST"])
 def contacts():
 
-    contacts = Contact.query.all()
+    if request.method == "GET":
 
-    contacts_to_dict = [contact.to_dict(rules = ("-open_positions", "-outreach")) for contact in contacts] 
+        contacts = Contact.query.all()
 
-    response = make_response(
-        contacts_to_dict,
-        200
-    )
+        contacts_to_dict = [contact.to_dict(rules = ("-open_positions", "-outreach")) for contact in contacts] 
+
+        response = make_response(
+            contacts_to_dict,
+            200
+        )
+
+    elif request.method == "POST":
+
+        form_data = request.get_json()
+
+        new_contact = Contact(
+            outreach_id = form_data["outreach_id"],
+            name = form_data["name"],
+            linkedin_url = form_data["linkedin_url"],
+            position = form_data["position"],
+            length_of_position = form_data["length_of_position"]
+        )
+
+        db.session.add(new_contact)
+        db.session.commit()
+
+        response = make_response(
+            new_contact.to_dict(),
+            201
+        )
+
+    else:
+
+        response = make_response(
+            {"error" : "method not allowed"},
+            400
+        )
 
     return response
 
@@ -108,17 +195,46 @@ def contact(id):
 
     return response
 
-@app.route("/outreach", methods = ["GET"])
+@app.route("/outreach", methods = ["GET", "POST"])
 def outreach():
 
-    all_outreach = Outreach.query.all()
+    if request.method == "GET":
 
-    all_outreach_to_dict = [outreach.to_dict(rules = ("-contacts", )) for outreach in all_outreach] 
+        all_outreach = Outreach.query.all()
 
-    response = make_response(
-        all_outreach_to_dict,
-        200
-    )
+        all_outreach_to_dict = [outreach.to_dict(rules = ("-contacts", )) for outreach in all_outreach] 
+
+        response = make_response(
+            all_outreach_to_dict,
+            200
+        )
+
+    elif request.method == "POST":
+
+        form_data = request.get_json()
+
+        new_outreach = Outreach(
+            connected = form_data["connected"],
+            sent_messages = form_data["sent_messages"],
+            replied = form_data["replied"],
+            tone = form_data["tone"],
+            recent_interaction = form_data["recent_interaction"]
+        )
+
+        db.session.add(new_outreach)
+        db.session.commit()
+
+        response = make_response(
+            new_outreach.to_dict(),
+            201
+        )
+
+    else:
+
+        response = make_response(
+            {"error" : "method not allowed"},
+            400
+        )
 
     return response
 
