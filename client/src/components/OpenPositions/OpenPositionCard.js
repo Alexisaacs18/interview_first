@@ -1,7 +1,10 @@
 import React from "react";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function OpenPositionCard({ position, url }) {
+
+    const navigate = useNavigate()
 
     const [company, setCompany] = useState({})
     const [contact, setContact] = useState({})
@@ -22,8 +25,18 @@ function OpenPositionCard({ position, url }) {
             })
     }, [])
 
+    function navigateToOpenPosition() {
+        navigate(`/openpositions/${position.id}`, {
+            state: {
+                position: position,
+                company: company,
+                contact: contact
+            }
+        })
+    }
+
     return (
-        <div>
+        <div onClick={navigateToOpenPosition} className="openPositionCard">
             <ul>Position: {position.position}</ul>
             <p>Company: {company.name}</p>
             <p>Contact: {contact.name}</p>

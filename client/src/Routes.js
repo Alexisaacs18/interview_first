@@ -4,6 +4,7 @@ import Contacts from "./components/Contacts/Contacts";
 import OpenPositions from "./components/OpenPositions/OpenPositions";
 import Company from "./components/Companies/Company";
 import Contact from "./components/Contacts/Contact";
+import OpenPosition from "./components/OpenPositions/OpenPosition";
 
 const routes = [
     {
@@ -14,7 +15,8 @@ const routes = [
             { path: "/company/:id", element: <Company /> },
             { path: "/contacts", element: <Contacts /> },
             { path: "/contacts/:id", element: <Contact /> },
-            { path: "/openpositions", element: <OpenPositions /> }
+            { path: "/openpositions", element: <OpenPositions /> },
+            { path: "/openpositions/:id", element: <OpenPosition /> }
         ]
     }
 ]

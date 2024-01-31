@@ -77,3 +77,21 @@
 .contactCard p {
   text-align: center;
 }
+
+.openPositionCard {
+  background-color: white;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  width: 300px;
+  display: inline-block;
+  margin-right: 20px;
+}
+
+.openPositionCard ul {
+  text-align: center;
+}
+
+
+.openPositionCard p {
+  text-align: center;
+}
