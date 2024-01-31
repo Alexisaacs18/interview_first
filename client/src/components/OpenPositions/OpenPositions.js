@@ -14,7 +14,7 @@ function OpenPositions() {
             .then((data) => {
                 setOpenPositions(data)
             })
-    })
+    }, [])
 
     return (
         <div>

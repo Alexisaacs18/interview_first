@@ -19,7 +19,7 @@ function Contacts() {
     return (
         <div>
             {contacts.map((contact) => (
-                <ContactCard key={contact.id} contact={contact} />
+                <ContactCard key={contact.id} contact={contact} url={url} />
             ))}
         </div>
     )
