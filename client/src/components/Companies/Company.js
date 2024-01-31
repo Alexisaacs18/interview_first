@@ -24,15 +24,16 @@ function Company() {
         (position.company_id === company.id))
 
     return (
-        <div className="company">
-            <div>
+        <div className="container">
+            <div className="company">
                 <h3>Name: {company.name}</h3>
-                <ul>Amount of Employees: {company.amount_of_employees}</ul>
-                <ul>Open Positions: {company.total_open_positions}</ul>
+                <p>Amount of Employees: {company.amount_of_employees}</p>
+                <p>Open Positions: {company.total_open_positions}</p>
             </div>
-            <div>
+            <div className="positions">
+                <h3>Open Positions</h3>
                 {positionsForCompanies.map((position) => (
-                    <h4>{position.position}</h4>
+                    <li>{position.position}</li>
                 ))}
             </div>
         </div>

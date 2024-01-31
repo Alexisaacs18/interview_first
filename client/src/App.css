@@ -147,8 +147,39 @@ nav h1 {
   text-align: center;
 }
 
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  padding-top: 40px;
+}
+
 .company {
+  background-color: rgb(179, 200, 205);
+  border: 1px solid #757575;
+  border-radius: 8px;
+  width: 300px;
+  display: inline-block;
+  margin-right: 20px;
+}
+
+.company h3 {
   text-align: center;
+}
+
+.company p {
+  text-align: center;
+}
+
+.positions {
+  background-color: rgb(179, 200, 205);
+  border: 1px solid #757575;
+  border-radius: 8px;
+  width: 300px;
+  display: inline-block;
+  margin-right: 20px;
+  padding-left: 10px;
 }
 
 .formButton {
