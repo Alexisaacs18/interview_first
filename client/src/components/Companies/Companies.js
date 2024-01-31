@@ -9,6 +9,7 @@ function Companies() {
     const url = "http://127.0.0.1:5555"
 
     const [companies, setCompanies] = useState([])
+    const [showForm, setShowForm] = useState(false)
 
     useEffect(() => {
         fetch(`${url}/companies`)
@@ -24,17 +25,24 @@ function Companies() {
         ])
     }
 
+    function handleClick() {
+        setShowForm(prev => !prev)
+    }
+
     return (
         <div>
+            <div className="formButton">
+                {showForm ? <button onClick={handleClick}>Hide Form</button> : <button onClick={handleClick}>Show Form</button>}
+            </div>
             <div className="formContainer">
-        <NewCompanyForm addCompany={addCompany} />
-    </div>
-        <div className="companyContainer">
-            {companies.map((company) => (
-                <CompanyCard key={company.id} company={company} />
-            ))}
+                {showForm ? <NewCompanyForm addCompany={addCompany} /> : <div></div>}
+            </div>
+            <div className="companyContainer">
+                {companies.map((company) => (
+                    <CompanyCard key={company.id} company={company} />
+                ))}
+            </div>
         </div>
-        </div >
     )
 }
 

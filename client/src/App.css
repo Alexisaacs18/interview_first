@@ -151,6 +151,24 @@ nav h1 {
   text-align: center;
 }
 
+.formButton {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  padding-top: 40px;
+}
+
+.formButton button {
+  background-color: #419fbc;
+  color: white;
+  padding: 12px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
 .formContainer {
   display: flex;
   flex-wrap: wrap;
