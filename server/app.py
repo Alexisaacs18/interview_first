@@ -183,11 +183,14 @@ def contacts():
         form_data = request.get_json()
 
         new_contact = Contact(
-            outreach_id = form_data["outreach_id"],
             name = form_data["name"],
             linkedin_url = form_data["linkedin_url"],
             position = form_data["position"],
-            length_of_position = form_data["length_of_position"]
+            length_of_position = form_data["length_of_position"],
+            connected = form_data["connected"],
+            sent_messages = form_data["sent_messages"],
+            replied = form_data["replied"],
+            tone = form_data["tone"]
         )
 
         db.session.add(new_contact)

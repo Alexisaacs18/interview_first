@@ -287,3 +287,47 @@ textarea {
   cursor: pointer;
   font-size: 16px;
 }
+
+.contactFormContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  padding-top: 40px;
+}
+
+.contactForm {
+  width: 400px;
+  padding: 20px;
+  background-color: rgb(179, 200, 205);
+  border: 1px solid #757575;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.contactForm label {
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #666;
+}
+
+.contactForm input,
+textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: none;
+  border-radius: 5px;
+  font-size: 14px;
+  outline: none;
+}
+
+.contactForm button {
+  background-color: #419fbc;
+  color: white;
+  padding: 12px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}

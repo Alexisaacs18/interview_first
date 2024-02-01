@@ -3,26 +3,29 @@ import { useFormik } from 'formik';
 import * as yup from 'yup';
 
 
-function NewContactForm({ }) {
+function NewContactForm({ addContact }) {
 
     const formSchema = yup.object({
-        company_id: yup.number().required("Company ID is required."),
-        contact_id: yup.number().required("Contact ID is required."),
+        name: yup.string().required("Company ID is required."),
+        linkedin_url: yup.string().required("Contact ID is required."),
         position: yup.string().required("Company ID is required."),
-        salary_range: yup.string().required("Contact ID is required."),
+        length_of_position: yup.string().required("Contact ID is required."),
     });
 
     const formik = useFormik({
         initialValues: {
-            company_id: null,
-            contact_id: null,
+            name: '',
+            linkedin_url: '',
             position: '',
-            salary_range: '',
-            position_status: true
+            length_of_position: '',
+            connected: false,
+            sent_messages: null,
+            replied: false,
+            tone: false
         },
         validationSchema: formSchema,
         onSubmit: (values) => {
-            fetch('http://127.0.0.1:5555/open_positions', {
+            fetch('http://127.0.0.1:5555/contacts', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -31,36 +34,36 @@ function NewContactForm({ }) {
             })
                 .then((res) => res.json())
                 .then((data) => {
-                    addOpenPosition(data)
+                    addContact(data)
                 })
         }
     });
 
     return (
-        <div className="positionForm" id="companynewform">
-            <h3>Add New Company</h3>
+        <div className="contactForm" id="contactform">
+            <h3>Add New Contact</h3>
             <form onSubmit={formik.handleSubmit}>
                 <div>
-                    <label htmlFor="company_id">Company</label>
+                    <label htmlFor="name">Name</label>
                     <input
-                        id="company_id"
-                        name="company_id"
-                        type="number"
+                        id="name"
+                        name="name"
+                        type="text"
                         onChange={formik.handleChange}
                         value={formik.values.name}
-                        placeholder="Company"
+                        placeholder="Name"
                     />
                     {formik.errors.name && <div>{formik.errors.name}</div>}
                 </div>
                 <div>
-                    <label htmlFor="contact_id">Contact</label>
+                    <label htmlFor="linkedin_url">Linkedin</label>
                     <input
-                        id="contact_id"
-                        name="contact_id"
-                        type="number"
+                        id="linkedin_url"
+                        name="linkedin_url"
+                        type="text"
                         onChange={formik.handleChange}
                         value={formik.values.amount_of_employees}
-                        placeholder="Contact"
+                        placeholder="Linkedin Url"
                     />
                     {formik.errors.amount_of_employees && <div>{formik.errors.amount_of_employees}</div>}
                 </div>
@@ -77,14 +80,14 @@ function NewContactForm({ }) {
                     {formik.errors.amount_of_employees && <div>{formik.errors.amount_of_employees}</div>}
                 </div>
                 <div>
-                    <label htmlFor="salary_range">Salary Range</label>
+                    <label htmlFor="length_of_position">Length of Position</label>
                     <input
-                        id="salary_range"
-                        name="salary_range"
+                        id="length_of_position"
+                        name="length_of_position"
                         type="text"
                         onChange={formik.handleChange}
                         value={formik.values.amount_of_employees}
-                        placeholder="Salary Range"
+                        placeholder="Length of Position"
                     />
                     {formik.errors.amount_of_employees && <div>{formik.errors.amount_of_employees}</div>}
                 </div>

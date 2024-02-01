@@ -37,8 +37,8 @@ function NewOpenPositionForm({ addOpenPosition }) {
     });
 
     return (
-        <div className="positionForm" id="companynewform">
-            <h3>Add New Company</h3>
+        <div className="positionForm" id="positionForm">
+            <h3>Add New Open Position</h3>
             <form onSubmit={formik.handleSubmit}>
                 <div>
                     <label htmlFor="company_id">Company</label>
