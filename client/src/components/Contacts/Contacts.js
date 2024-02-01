@@ -19,7 +19,7 @@ function Contacts() {
     return (
         <div className="contactContainer">
             {contacts.map((contact) => (
-                <ContactCard key={contact.id} contact={contact} url={url} />
+                <ContactCard key={contact.id} contact={contact} />
             ))}
         </div>
     )

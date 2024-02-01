@@ -1,6 +1,6 @@
 from config import app
 
-from models import db, datetime, Companies, Open_Positions, Contact, Outreach
+from models import db, Companies, Open_Positions, Contact
 
 if __name__ == '__main__':
     with app.app_context():
@@ -10,7 +10,6 @@ if __name__ == '__main__':
         Companies.query.delete()
         Open_Positions.query.delete()
         Contact.query.delete()
-        Outreach.query.delete()
 
         db.session.commit()
 
@@ -37,38 +36,26 @@ if __name__ == '__main__':
         db.session.add_all(companies)
         db.session.commit()
 
-        outreach = [
-            Outreach(
-                connected = True,
-                sent_messages = 1,
-                replied = False,
-                tone = False,
-            ),
-            Outreach(
-                connected = True,
-                sent_messages = 3,
-                replied = True,
-                tone = True,
-            )
-        ]
-
-        db.session.add_all(outreach)
-        db.session.commit()
-
         contacts = [
             Contact(
-                outreach_id = outreach[0].id,
                 name = "Robert Horvick",
                 linkedin_url = "https://www.linkedin.com/in/roberthorvick/",
                 position = "Engineering Manager at Google",
-                length_of_position = "10 Months"
+                length_of_position = "10 Months",
+                connected = True,
+                sent_messages = 1,
+                replied = False,
+                tone = False
             ),
             Contact(
-                outreach_id = outreach[1].id,
                 name = "Patrick Delfert",
                 linkedin_url = "https://www.linkedin.com/in/delfert/",
                 position = "Engineering Manager at Google",
-                length_of_position = "1 Year 9 Months"
+                length_of_position = "1 Year 9 Months",
+                connected = True,
+                sent_messages = 3,
+                replied = True,
+                tone = True
             )
         ]
 

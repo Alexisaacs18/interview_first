@@ -1,7 +1,7 @@
 from config import app
 from flask import make_response, request
 
-from models import db, Companies, Open_Positions, Contact, Outreach
+from models import db, Companies, Open_Positions, Contact
 
 @app.route("/companies", methods=["GET", "POST"])
 def companies():
@@ -216,69 +216,6 @@ def contact(id):
 
         response = make_response(
             contact.to_dict(),
-            200
-        )
-
-    else: 
-
-        response = make_response(
-            {"error" : "open position not found"},
-            404
-        )
-
-    return response
-
-@app.route("/outreach", methods = ["GET", "POST"])
-def outreach():
-
-    if request.method == "GET":
-
-        all_outreach = Outreach.query.all()
-
-        all_outreach_to_dict = [outreach.to_dict(rules = ("-contacts", )) for outreach in all_outreach] 
-
-        response = make_response(
-            all_outreach_to_dict,
-            200
-        )
-
-    elif request.method == "POST":
-
-        form_data = request.get_json()
-
-        new_outreach = Outreach(
-            connected = form_data["connected"],
-            sent_messages = form_data["sent_messages"],
-            replied = form_data["replied"],
-            tone = form_data["tone"]
-        )
-
-        db.session.add(new_outreach)
-        db.session.commit()
-
-        response = make_response(
-            new_outreach.to_dict(),
-            201
-        )
-
-    else:
-
-        response = make_response(
-            {"error" : "method not allowed"},
-            400
-        )
-
-    return response
-
-@app.route("/outreach/<int:id>", methods = ["GET"])
-def outreach_by_id(id):
-
-    outreach = Outreach.query.filter(Outreach.id == id).first()
-
-    if outreach:
-
-        response = make_response(
-            outreach.to_dict(),
             200
         )
 

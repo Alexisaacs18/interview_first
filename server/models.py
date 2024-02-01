@@ -1,7 +1,6 @@
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy_serializer import SerializerMixin
 from sqlalchemy.orm import validates
-from datetime import datetime
 
 db = SQLAlchemy()
 
@@ -48,28 +47,16 @@ class Open_Positions(db.Model, SerializerMixin):
 class Contact(db.Model, SerializerMixin):
     __tablename__ = "contact"
 
-    serialize_rules = ("-open_positions.contacts", "-outreach.contacts")
+    serialize_rules = ("-open_positions.contacts",)
 
     id = db.Column(db.Integer, primary_key=True)
-    outreach_id = db.Column(db.Integer, db.ForeignKey("outreach.id"))
     name = db.Column(db.String)
     linkedin_url = db.Column(db.String)
     position = db.Column(db.String)
     length_of_position = db.Column(db.String)
-
-    open_positions = db.relationship("Open_Positions", back_populates = "contacts")
-    outreach = db.relationship("Outreach", back_populates = "contacts")
-
-class Outreach(db.Model, SerializerMixin):
-    __tablename__ = "outreach"
-
-    serialize_rules = ("-contacts.outreach", )
-
-    id = db.Column(db.Integer, primary_key=True)
     connected = db.Column(db.Boolean)
     sent_messages = db.Column(db.Integer)
     replied = db.Column(db.Boolean)
     tone = db.Column(db.Boolean)
 
-    contacts = db.relationship("Contact", back_populates = "outreach")
-
+    open_positions = db.relationship("Open_Positions", back_populates = "contacts")
