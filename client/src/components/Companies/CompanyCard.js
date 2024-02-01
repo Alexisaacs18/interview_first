@@ -2,7 +2,7 @@ import React from "react";
 import Company from "./Company";
 import { useNavigate } from "react-router-dom";
 
-function CompanyCard({ company }) {
+function CompanyCard({ company, handleDelete, url }) {
 
     const navigate = useNavigate()
 
@@ -10,11 +10,28 @@ function CompanyCard({ company }) {
         navigate(`/company/${company.id}`, { state: company })
     }
 
+    function handleClick() {
+        handleDelete(company.id)
+        deleteCompany()
+    }
+
+    function deleteCompany() {
+        fetch(`${url}/companies/${company.id}`, {
+            method: "DELETE",
+            headers: {
+                'Content-Type': "application/json"
+            }
+        })
+    }
+
     return (
-        <div onClick={navigateToCompany} className="companyCard">
-            <h3>Company Name: {company.name}</h3>
-            <p>Amount of Employees: {company.amount_of_employees}</p>
-            <p>Open Positions: {company.total_open_positions}</p>
+        <div className="companyCard">
+            <div onClick={navigateToCompany} >
+                <h3>Company Name: {company.name}</h3>
+                <p>Amount of Employees: {company.amount_of_employees}</p>
+                <p>Open Positions: {company.total_open_positions}</p>
+            </div>
+            <button onClick={handleClick}>Delete</button>
         </div>
     )
 }

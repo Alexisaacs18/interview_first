@@ -81,6 +81,16 @@ nav h1 {
   text-align: center;
 }
 
+.companyCard button {
+  background-color: #419fbc;
+  color: white;
+  padding: 12px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 12px;
+}
+
 .contactContainer {
   display: flex;
   flex-wrap: wrap;

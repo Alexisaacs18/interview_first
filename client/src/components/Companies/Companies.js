@@ -29,6 +29,13 @@ function Companies() {
         setShowForm(prev => !prev)
     }
 
+    function handleDelete(id) {
+        const deleteCompany = companies.filter((company) => (
+            company.id !== id
+        ))
+        setCompanies(deleteCompany)
+    }
+
     return (
         <div>
             <div className="formButton">
@@ -39,7 +46,7 @@ function Companies() {
             </div>
             <div className="companyContainer">
                 {companies.map((company) => (
-                    <CompanyCard key={company.id} company={company} />
+                    <CompanyCard key={company.id} company={company} handleDelete={handleDelete} url={url} />
                 ))}
             </div>
         </div>
