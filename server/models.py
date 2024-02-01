@@ -17,6 +17,19 @@ class Companies(db.Model, SerializerMixin):
 
     open_positions = db.relationship("Open_Positions", back_populates = "companies", cascade = "all,delete")
 
+    @validates("name")
+    def validate_name(self, key, val):
+        return val
+    
+    @validates("amount_of_employees")
+    def validate_amount_of_employees(self, key, val):
+        return val
+    
+    @validates("total_open_positions")
+    def validate_total_open_positions(self, key, val):
+        return val
+
+
 class Open_Positions(db.Model, SerializerMixin):
     __tablename__ = "open_positions"
 

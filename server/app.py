@@ -45,17 +45,51 @@ def companies():
 
     return response
 
-@app.route("/companies/<int:id>", methods=["GET"])
+@app.route("/companies/<int:id>", methods=["GET", "PATCH", "DELETE"])
 def company(id):
 
     company = Companies.query.filter(Companies.id == id).first()
 
     if company:
 
-        response = make_response(
-            company.to_dict(),
-            200
-        )
+        if request.method == "GET":
+
+            response = make_response(
+                company.to_dict(),
+                200
+            )
+
+        elif request.method == "PATCH":
+
+            form_data = request.get_json()
+
+            for key in form_data:
+                setattr(company, key, form_data[key])
+
+            db.session.commit()
+
+            response = make_response(
+                company.to_dict(),
+                201
+            )
+
+        
+        elif request.method == "DELETE":
+
+            db.session.delete(company)
+            db.session.commit()
+
+            response = make_response(
+                {},
+                201
+            )
+
+        else:
+
+            response = make_response(
+                {"error" : "method not allowed"},
+                400
+            )
 
     else:
 
