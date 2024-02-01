@@ -182,6 +182,16 @@ nav h1 {
   text-align: center;
 }
 
+.company button {
+  background-color: #419fbc;
+  color: white;
+  padding: 12px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 12px;
+}
+
 .positions {
   background-color: rgb(179, 200, 205);
   border: 1px solid #757575;
@@ -340,4 +350,21 @@ textarea {
   border-radius: 5px;
   cursor: pointer;
   font-size: 16px;
+}
+
+.companyUpdateForm label {
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #666;
+}
+
+.companyUpdateForm input,
+textarea {
+  width: 90%;
+  padding: 5px;
+  margin-bottom: 15px;
+  border: none;
+  border-radius: 5px;
+  font-size: 14px;
+  outline: none;
 }
