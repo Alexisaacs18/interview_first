@@ -1,12 +1,26 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-function ContactCard({ contact }) {
+function ContactCard({ contact, url, handleDelete }) {
 
     const navigate = useNavigate()
 
     function navigateToContact() {
         navigate(`/contacts/${contact.id}`, { state: contact })
+    }
+
+    function handleClick() {
+        handleDelete(contact.id)
+        deleteContact()
+    }
+
+    function deleteContact() {
+        fetch(`${url}/contacts/${contact.id}`, {
+            method: "DELETE",
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
     }
 
     return (
@@ -18,7 +32,7 @@ function ContactCard({ contact }) {
                 <p>Length of Position: {contact.length_of_position}</p>
                 {contact.connected ? <p>Connected</p> : <p>Not Connected</p>}
             </div>
-            <button>Delete</button>
+            <button onClick={handleClick}>Delete</button>
         </div>
     )
 }

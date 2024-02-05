@@ -26,6 +26,13 @@ function Contacts() {
         setContacts([...contacts, contact])
     }
 
+    function handleDelete(id) {
+        const deleteContact = contacts.filter((contact) => (
+            contact.id !== id
+        ))
+        setContacts(deleteContact)
+    }
+
     return (
         <div>
             <div>
@@ -38,7 +45,7 @@ function Contacts() {
             </div>
             <div className="contactContainer">
                 {contacts.map((contact) => (
-                    <ContactCard key={contact.id} contact={contact} />
+                    <ContactCard key={contact.id} contact={contact} url={url} handleDelete={handleDelete} />
                 ))}
             </div>
         </div>
