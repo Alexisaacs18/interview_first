@@ -307,6 +307,17 @@ textarea {
   color: #666;
 }
 
+.positionForm select,
+textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: none;
+  border-radius: 5px;
+  font-size: 14px;
+  outline: none;
+}
+
 .positionForm input,
 textarea {
   width: 100%;

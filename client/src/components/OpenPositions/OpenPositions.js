@@ -39,7 +39,7 @@ function OpenPositions() {
                 {showForm ? <button onClick={handleClick}>Hide Form</button> : <button onClick={handleClick}>Show Form</button>}
             </div>
             <div className="positionFormContainer">
-                {showForm ? <NewOpenPositionForm addOpenPosition={addOpenPosition} /> : <div></div>}
+                {showForm ? <NewOpenPositionForm addOpenPosition={addOpenPosition} url={url} /> : <div></div>}
             </div>
             <div className="openPositionContainer">
                 {openPositions.map((position) => (
