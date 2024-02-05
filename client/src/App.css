@@ -469,5 +469,32 @@ textarea {
   border-radius: 5px;
   cursor: pointer;
   font-size: 12px;
-  padding-left: 30px;
+}
+
+.openPosition label {
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #666;
+}
+
+.openPosition input,
+textarea {
+  width: 90%;
+  padding: 5px;
+  margin-bottom: 15px;
+  border: none;
+  border-radius: 5px;
+  font-size: 14px;
+  outline: none;
+}
+
+.openPosition select,
+textarea {
+  width: 90%;
+  padding: 5px;
+  margin-bottom: 15px;
+  border: none;
+  border-radius: 5px;
+  font-size: 14px;
+  outline: none;
 }

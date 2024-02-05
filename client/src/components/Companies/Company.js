@@ -91,7 +91,7 @@ function Company() {
                                 <label htmlFor="total_open_positions">Total_open_positions:</label>
                                 <input onChange={handleChange} value={form.total_open_positions} type="number" name="total_open_positions" defaultValue={company.total_open_positions} />
 
-                                <button type="submit" onClick={handleClick}>Update Company</button>
+                                <button type="submit">Update Company</button>
                             </form>
                             <button onClick={handleClick}>Back</button>
                         </div>}
