@@ -124,6 +124,16 @@ nav h1 {
   text-align: center;
 }
 
+.contactCard button {
+  background-color: #419fbc;
+  color: white;
+  padding: 12px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 12px;
+}
+
 .openPositionContainer {
   display: flex;
   flex-wrap: wrap;
@@ -155,6 +165,16 @@ nav h1 {
 
 .openPositionCard p {
   text-align: center;
+}
+
+.openPositionCard button {
+  background-color: #419fbc;
+  color: white;
+  padding: 12px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 12px;
 }
 
 .container {
@@ -383,5 +403,39 @@ textarea {
 }
 
 .openPosition p {
+  text-align: center;
+}
+
+.contact {
+  background-color: rgb(179, 200, 205);
+  border: 1px solid #757575;
+  border-radius: 8px;
+  width: 300px;
+  display: inline-block;
+  margin-right: 20px;
+}
+
+.contact h3 {
+  text-align: center;
+}
+
+.contact p {
+  text-align: center;
+}
+
+.status {
+  background-color: rgb(179, 200, 205);
+  border: 1px solid #757575;
+  border-radius: 8px;
+  width: 300px;
+  display: inline-block;
+  margin-right: 20px;
+}
+
+.status h3 {
+  text-align: center;
+}
+
+.status p {
   text-align: center;
 }

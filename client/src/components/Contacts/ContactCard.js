@@ -10,12 +10,15 @@ function ContactCard({ contact }) {
     }
 
     return (
-        <div onClick={navigateToContact} className="contactCard">
-            <h3>Name: {contact.name}</h3>
-            <p>Position: {contact.position}</p>
-            <a href={contact.linkedin_url}>Linkedin</a>
-            <p>Length of Position: {contact.length_of_position}</p>
-            {contact.connected ? <p>Connected</p> : <p>Not Connected</p>}
+        <div className="contactCard">
+            <div onClick={navigateToContact}>
+                <h3>Name: {contact.name}</h3>
+                <p>Position: {contact.position}</p>
+                <a href={contact.linkedin_url}>Linkedin</a>
+                <p>Length of Position: {contact.length_of_position}</p>
+                {contact.connected ? <p>Connected</p> : <p>Not Connected</p>}
+            </div>
+            <button>Delete</button>
         </div>
     )
 }

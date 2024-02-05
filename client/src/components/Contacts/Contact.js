@@ -8,15 +8,15 @@ function Contact() {
     const contact = location.state;
 
     return (
-        <div>
-            <div>
+        <div className="container">
+            <div className="contact">
                 <h3>Name: {contact.name}</h3>
                 <ul>Position: {contact.position}</ul>
                 <a href={contact.linkedin_url}>Linkedin</a>
                 <ul>Length of Position: {contact.length_of_position}</ul>
             </div>
-            <div>
-                <h4>Status</h4>
+            <div className="status">
+                <h3>Status</h3>
                 {contact.connected ? <p>Connected</p> : <p>Not Connected</p>}
                 <p>Messages Sent: {contact.sent_messages}</p>
                 {contact.replied ? <p>Reply Received</p> : <p>No Reply</p>}

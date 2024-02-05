@@ -26,6 +26,13 @@ function OpenPositions() {
         setShowForm(prev => !prev)
     }
 
+    function handleDelete(id) {
+        const deletePosition = openPositions.filter((position) => (
+            position.id !== id
+        ))
+        setOpenPositions(deletePosition)
+    }
+
     return (
         <div>
             <div className="formButton">
@@ -36,7 +43,7 @@ function OpenPositions() {
             </div>
             <div className="openPositionContainer">
                 {openPositions.map((position) => (
-                    <OpenPositionCard key={position.id} position={position} url={url} />
+                    <OpenPositionCard key={position.id} position={position} url={url} handleDelete={handleDelete} />
                 ))}
             </div>
         </div>
