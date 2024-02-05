@@ -368,3 +368,20 @@ textarea {
   font-size: 14px;
   outline: none;
 }
+
+.openPosition {
+  background-color: rgb(179, 200, 205);
+  border: 1px solid #757575;
+  border-radius: 8px;
+  width: 300px;
+  display: inline-block;
+  margin-right: 20px;
+}
+
+.openPosition h3 {
+  text-align: center;
+}
+
+.openPosition p {
+  text-align: center;
+}

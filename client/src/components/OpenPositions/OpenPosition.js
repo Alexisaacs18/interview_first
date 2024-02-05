@@ -8,12 +8,14 @@ function OpenPosition() {
 
 
     return (
-        <div>
-            <ul>Position: {prop.position.position}</ul>
-            <p>Company: {prop.company.name}</p>
-            <p>Contact: {prop.contact.name}</p>
-            <p>Salary Range: {prop.position.salary_range}</p>
-            {prop.position.position_status ? <p>Status: Open</p> : <p>Status: Closed</p>}
+        <div className="container">
+            <div className="openPosition">
+                <h3>Position: {prop.position.position}</h3>
+                <p>Company: {prop.company.name}</p>
+                <p>Contact: {prop.contact.name}</p>
+                <p>Salary Range: {prop.position.salary_range}</p>
+                {prop.position.position_status ? <p>Status: Open</p> : <p>Status: Closed</p>}
+            </div>
         </div>
     )
 }

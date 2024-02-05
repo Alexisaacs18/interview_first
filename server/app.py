@@ -143,17 +143,51 @@ def open_positions():
 
     return response
 
-@app.route("/open_positions/<int:id>", methods = ["GET"])
+@app.route("/open_positions/<int:id>", methods = ["GET", "PATCH", "DELETE"])
 def open_position(id):
 
     open_position = Open_Positions.query.filter(Open_Positions.id == id).first()
 
     if open_position:
 
-        response = make_response(
-            open_position.to_dict(),
-            200
-        )
+        if request.method == "GET":
+
+            response = make_response(
+                open_position.to_dict(),
+                200
+            )
+
+        elif request.method == "PATCH":
+
+            form_data = request.get_json()
+
+            for key in form_data:
+                setattr(open_position, key, form_data[key])
+
+            db.session.commit()
+
+            response = make_response(
+                open_position.to_dict(),
+                201
+            )
+
+        
+        elif request.method == "DELETE":
+
+            db.session.delete(open_position)
+            db.session.commit()
+
+            response = make_response(
+                {},
+                201
+            )
+
+        else:
+
+            response = make_response(
+                {"error" : "method not allowed"},
+                400
+            )
 
     else: 
 
@@ -210,17 +244,51 @@ def contacts():
 
     return response
 
-@app.route("/contacts/<int:id>", methods = ["GET"])
+@app.route("/contacts/<int:id>", methods = ["GET", "PATCH", "DELETE"])
 def contact(id):
 
     contact = Contact.query.filter(Contact.id == id).first()
 
     if contact:
 
-        response = make_response(
-            contact.to_dict(),
-            200
-        )
+        if request.method == "GET":
+
+            response = make_response(
+                contact.to_dict(),
+                200
+            )
+
+        elif request.method == "PATCH":
+
+            form_data = request.get_json()
+
+            for key in form_data:
+                setattr(contact, key, form_data[key])
+
+            db.session.commit()
+
+            response = make_response(
+                contact.to_dict(),
+                201
+            )
+
+        
+        elif request.method == "DELETE":
+
+            db.session.delete(contact)
+            db.session.commit()
+
+            response = make_response(
+                {},
+                201
+            )
+
+        else:
+
+            response = make_response(
+                {"error" : "method not allowed"},
+                400
+            )
 
     else: 
 
