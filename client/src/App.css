@@ -406,6 +406,16 @@ textarea {
   text-align: center;
 }
 
+.openPosition button {
+  background-color: #419fbc;
+  color: white;
+  padding: 12px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 12px;
+}
+
 .contact {
   background-color: rgb(179, 200, 205);
   border: 1px solid #757575;
@@ -438,4 +448,15 @@ textarea {
 
 .status p {
   text-align: center;
+}
+
+.page button {
+  background-color: #419fbc;
+  color: white;
+  padding: 12px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 12px;
+  padding-left: 30px;
 }
