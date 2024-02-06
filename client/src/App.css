@@ -444,6 +444,33 @@ textarea {
   text-align: center;
 }
 
+.contact button {
+  background-color: #419fbc;
+  color: white;
+  padding: 12px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.contact label {
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #666;
+}
+
+.contact input,
+textarea {
+  width: 90%;
+  padding: 5px;
+  margin-bottom: 15px;
+  border: none;
+  border-radius: 5px;
+  font-size: 14px;
+  outline: none;
+}
+
 .status {
   background-color: rgb(179, 200, 205);
   border: 1px solid #757575;
@@ -459,6 +486,33 @@ textarea {
 
 .status p {
   text-align: center;
+}
+
+.status button {
+  background-color: #419fbc;
+  color: white;
+  padding: 12px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.status label {
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #666;
+}
+
+.status input,
+textarea {
+  width: 90%;
+  padding: 5px;
+  margin-bottom: 15px;
+  border: none;
+  border-radius: 5px;
+  font-size: 14px;
+  outline: none;
 }
 
 .page button {

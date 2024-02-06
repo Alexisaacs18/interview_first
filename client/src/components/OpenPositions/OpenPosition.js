@@ -47,10 +47,23 @@ function OpenPosition() {
     }, [])
 
     function handleChange(e) {
-        setForm({
-            ...form,
-            [e.target.name]: e.target.value
-        })
+
+        if (e.target.value === "true") {
+            setForm({
+                ...form,
+                [e.target.name]: true
+            })
+        } else if (e.target.value === "false") {
+            setForm({
+                ...form,
+                [e.target.name]: false
+            })
+        } else {
+            setForm({
+                ...form,
+                [e.target.name]: e.target.value
+            })
+        }
     }
 
     function handleClick() {
