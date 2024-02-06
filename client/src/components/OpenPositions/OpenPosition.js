@@ -57,6 +57,14 @@ function OpenPosition() {
         setEdit(prev => !prev)
     }
 
+    useEffect(() => {
+        getCompany()
+    }, [])
+
+    useEffect(() => {
+        getContact()
+    }, [])
+
     function handleSubmit(e) {
         e.preventDefault()
 
@@ -68,6 +76,9 @@ function OpenPosition() {
             position_status: form.position_status
         }
 
+        getCompany()
+        getContact()
+
         fetch(`${url}/open_positions/${prop.position.id}`, {
             method: "PATCH",
             headers: {
@@ -77,22 +88,21 @@ function OpenPosition() {
         })
     }
 
-    useEffect(() => {
+    function getCompany() {
         fetch(`${url}/companies/${form.company_id}`)
             .then((res) => res.json())
             .then((data) => {
                 setCompany(data)
             })
-    }, [])
+    }
 
-    useEffect(() => {
+    function getContact() {
         fetch(`${url}/contacts/${form.contact_id}`)
             .then((res) => res.json())
             .then((data) => {
                 setContact(data)
             })
-    }, [])
-
+    }
 
     return (
         <div>
