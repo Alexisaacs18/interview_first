@@ -515,6 +515,17 @@ textarea {
   outline: none;
 }
 
+.status select,
+textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: none;
+  border-radius: 5px;
+  font-size: 14px;
+  outline: none;
+}
+
 .page button {
   background-color: #419fbc;
   color: white;

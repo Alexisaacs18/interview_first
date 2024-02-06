@@ -50,10 +50,23 @@ function Contact() {
     }
 
     function statusChange(e) {
-        setStatusForm({
-            ...statusForm,
-            [e.target.name]: e.target.value
-        })
+
+        if (e.target.value === "true") {
+            setStatusForm({
+                ...statusForm,
+                [e.target.name]: true
+            })
+        } else if (e.target.value === "false") {
+            setStatusForm({
+                ...statusForm,
+                [e.target.name]: false
+            })
+        } else {
+            setStatusForm({
+                ...statusForm,
+                [e.target.name]: e.target.value
+            })
+        }
     }
 
     function handleSubmit(e) {
@@ -64,6 +77,25 @@ function Contact() {
             linkedin_url: contactForm.linkedin_url,
             position: contactForm.position,
             length_of_position: contactForm.length_of_position
+        }
+
+        fetch(`${url}/contacts/${contact.id}`, {
+            method: "PATCH",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+    }
+
+    function handleStatusSubmit(e) {
+        e.preventDefault()
+
+        const data = {
+            connected: statusForm.connected,
+            sent_messages: statusForm.sent_messages,
+            replied: statusForm.replied,
+            tone: statusForm.tone
         }
 
         fetch(`${url}/contacts/${contact.id}`, {
@@ -113,15 +145,38 @@ function Contact() {
                 <div className="status">
                     <h3>Status</h3>
                     {editStatus ? <div>
-                        {contact.connected ? <p>Connected</p> : <p>Not Connected</p>}
-                        <p>Messages Sent: {contact.sent_messages}</p>
-                        {contact.replied ? <p>Reply Received</p> : <p>No Reply</p>}
-                        {contact.tone ? <p>Tone: Positive</p> : <p>Tone: Negative or No Reply</p>}
+                        {statusForm.connected ? <p>Connected</p> : <p>Not Connected</p>}
+                        <p>Messages Sent: {statusForm.sent_messages}</p>
+                        {statusForm.replied ? <p>Reply Received</p> : <p>No Reply</p>}
+                        {statusForm.tone ? <p>Tone: Positive</p> : <p>Tone: Negative or No Reply</p>}
                         <button onClick={handleStatus} >Edit</button>
                     </div>
                         :
                         <div>
-                            <form></form>
+                            <form onSubmit={handleStatusSubmit}>
+                                <label htmlFor="connected">Status:</label>
+                                <select onChange={statusChange} value={statusForm.connected} name="connected" >
+                                    <option value={true}>Connected</option>
+                                    <option value={false}>Not Connected</option>
+                                </select>
+
+                                <label htmlFor="cent_messages">Sent Messages:</label>
+                                <input onChange={statusChange} value={statusForm.sent_messages} type="number" name="sent_messages" />
+
+                                <label htmlFor="replied">Reply:</label>
+                                <select onChange={statusChange} value={statusForm.replied} name="replied" >
+                                    <option value={true}>Reply Received</option>
+                                    <option value={false}>No Reply</option>
+                                </select>
+
+                                <label htmlFor="tone">Tone:</label>
+                                <select onChange={statusChange} value={statusForm.tone} name="tone" >
+                                    <option value={true}>Positive</option>
+                                    <option value={false}>Negative or No Reply</option>
+                                </select>
+
+                                <button type="submit" >Update Status</button>
+                            </form>
                             <button onClick={handleStatus}>Back</button>
                         </div>}
 
