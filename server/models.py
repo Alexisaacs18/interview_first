@@ -60,3 +60,17 @@ class Contact(db.Model, SerializerMixin):
     tone = db.Column(db.Boolean)
 
     open_positions = db.relationship("Open_Positions", back_populates = "contacts")
+
+class Login(db.Model, SerializerMixin):
+    __tablename__ = 'login'
+
+    id = db.Column(db.Integer, primary_key=True)
+    email = db.Column(db.String, nullable = False)
+    password = db.Column(db.String, nullable = False)
+
+    @validates('password')
+    def validate_password(self, key, val):
+        if len(val) < 8:
+            raise ValueError
+        else:
+            return val

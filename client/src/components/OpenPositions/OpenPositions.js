@@ -2,6 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import OpenPositionCard from "./OpenPositionCard";
 import NewOpenPositionForm from "./NewOpenPositionFrom";
+import NavBar from "../../NavBar";
 
 function OpenPositions() {
 
@@ -35,16 +36,19 @@ function OpenPositions() {
 
     return (
         <div>
-            <div className="formButton">
-                {showForm ? <button onClick={handleClick}>Hide Form</button> : <button onClick={handleClick}>Show Form</button>}
-            </div>
-            <div className="positionFormContainer">
-                {showForm ? <NewOpenPositionForm addOpenPosition={addOpenPosition} url={url} /> : <div></div>}
-            </div>
-            <div className="openPositionContainer">
-                {openPositions.map((position) => (
-                    <OpenPositionCard key={position.id} position={position} url={url} handleDelete={handleDelete} />
-                ))}
+            <div><NavBar /></div>
+            <div>
+                <div className="formButton">
+                    {showForm ? <button onClick={handleClick}>Hide Form</button> : <button onClick={handleClick}>Show Form</button>}
+                </div>
+                <div className="positionFormContainer">
+                    {showForm ? <NewOpenPositionForm addOpenPosition={addOpenPosition} url={url} /> : <div></div>}
+                </div>
+                <div className="openPositionContainer">
+                    {openPositions.map((position) => (
+                        <OpenPositionCard key={position.id} position={position} url={url} handleDelete={handleDelete} />
+                    ))}
+                </div>
             </div>
         </div>
     )

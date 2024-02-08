@@ -1,7 +1,7 @@
 from config import app
 from flask import make_response, request
 
-from models import db, Companies, Open_Positions, Contact
+from models import db, Companies, Open_Positions, Contact, Login
 
 @app.route("/companies", methods=["GET", "POST"])
 def companies():
@@ -296,6 +296,20 @@ def contact(id):
             {"error" : "open position not found"},
             404
         )
+
+    return response
+
+@app.route('/login', methods = ["GET"])
+def login():
+
+    logins = Login.query.all()
+
+    logins_to_dict = [login.to_dict() for login in logins]
+
+    response = make_response(
+        logins_to_dict,
+        200
+    )
 
     return response
 

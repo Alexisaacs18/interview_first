@@ -5,7 +5,6 @@ import NavBar from "./NavBar"
 function App() {
   return (
     <div>
-      <div><NavBar /></div>
       <div><Outlet /></div>
     </div>
   );

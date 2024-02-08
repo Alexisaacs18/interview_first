@@ -5,7 +5,7 @@ function NavBar() {
     const navigate = useNavigate()
 
     function navigateToCompanies() {
-        navigate("/")
+        navigate("/companies")
     }
 
     function navigateToContacts() {
@@ -16,6 +16,10 @@ function NavBar() {
         navigate("/openpositions")
     }
 
+    function navigateToLogin() {
+        navigate("/")
+    }
+
 
     return (
         <nav className="nav">
@@ -24,6 +28,7 @@ function NavBar() {
                 <li><button onClick={navigateToCompanies}>Companies</button></li>
                 <li><button onClick={navigateToOpenPositions}>Open Positions</button></li>
                 <li><button onClick={navigateToContacts}>Contacts</button></li>
+                <li><button onClick={navigateToLogin}>Log Out</button></li>
             </ul>
         </nav>
     )

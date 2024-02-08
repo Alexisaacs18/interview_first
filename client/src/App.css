@@ -52,6 +52,21 @@ nav h1 {
   color: rgb(51, 72, 115);
 }
 
+.header {
+  background-image: url("../../pictures/headerBackground.png");
+  color: white;
+  padding: 10px 20px;
+  padding-bottom: 40px;
+  border-bottom: 1px solid grey;
+  position: relative;
+  width: 100%;
+}
+
+.header h1 {
+  color: black;
+  text-align: center;
+}
+
 .companyContainer {
   display: flex;
   flex-wrap: wrap;
@@ -562,4 +577,108 @@ textarea {
   border-radius: 5px;
   font-size: 14px;
   outline: none;
+}
+
+.loginContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  padding-top: 40px;
+}
+
+.login {
+  background-color: rgb(179, 200, 205);
+  border: 1px solid #757575;
+  border-radius: 8px;
+  width: 300px;
+  display: inline-block;
+  margin-right: 20px;
+}
+
+.login h3 {
+  text-align: center;
+}
+
+.login p {
+  text-align: center;
+}
+
+.login label {
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #666;
+}
+
+.login input,
+textarea {
+  width: 90%;
+  padding: 5px;
+  margin-bottom: 15px;
+  border: none;
+  border-radius: 5px;
+  font-size: 14px;
+  outline: none;
+}
+
+.login button {
+  background-color: #419fbc;
+  color: white;
+  padding: 12px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.signUpContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  padding-top: 40px;
+}
+
+.signUp {
+  background-color: rgb(179, 200, 205);
+  border: 1px solid #757575;
+  border-radius: 8px;
+  width: 300px;
+  display: inline-block;
+  margin-right: 20px;
+}
+
+.signUp h3 {
+  text-align: center;
+}
+
+.signUp p {
+  text-align: center;
+}
+
+.signUp label {
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #666;
+}
+
+.signUp input,
+textarea {
+  width: 90%;
+  padding: 5px;
+  margin-bottom: 15px;
+  border: none;
+  border-radius: 5px;
+  font-size: 14px;
+  outline: none;
+}
+
+.signUp button {
+  background-color: #419fbc;
+  color: white;
+  padding: 12px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 12px;
 }

@@ -2,6 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import ContactCard from "./ContactCard";
 import NewContactForm from "./NewContactForm";
+import NavBar from "../../NavBar";
 
 function Contacts() {
 
@@ -35,18 +36,21 @@ function Contacts() {
 
     return (
         <div>
+            <div><NavBar /></div>
             <div>
-                <div className="formButton">
-                    {showForm ? <button onClick={handleClick}>Hide Form</button> : <button onClick={handleClick}>Show Form</button>}
+                <div>
+                    <div className="formButton">
+                        {showForm ? <button onClick={handleClick}>Hide Form</button> : <button onClick={handleClick}>Show Form</button>}
+                    </div>
+                    <div className="contactFormContainer">
+                        {showForm ? <NewContactForm addContact={addContact} /> : <div></div>}
+                    </div>
                 </div>
-                <div className="contactFormContainer">
-                    {showForm ? <NewContactForm addContact={addContact} /> : <div></div>}
+                <div className="contactContainer">
+                    {contacts.map((contact) => (
+                        <ContactCard key={contact.id} contact={contact} url={url} handleDelete={handleDelete} />
+                    ))}
                 </div>
-            </div>
-            <div className="contactContainer">
-                {contacts.map((contact) => (
-                    <ContactCard key={contact.id} contact={contact} url={url} handleDelete={handleDelete} />
-                ))}
             </div>
         </div>
     )

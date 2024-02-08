@@ -2,6 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import NewCompanyForm from "./NewCompanyForm";
 import CompanyCard from "./CompanyCard";
+import NavBar from "../../NavBar";
 
 
 function Companies() {
@@ -38,16 +39,19 @@ function Companies() {
 
     return (
         <div>
-            <div className="formButton">
-                {showForm ? <button onClick={handleClick}>Hide Form</button> : <button onClick={handleClick}>Show Form</button>}
-            </div>
-            <div className="formContainer">
-                {showForm ? <NewCompanyForm addCompany={addCompany} /> : <div></div>}
-            </div>
-            <div className="companyContainer">
-                {companies.map((company) => (
-                    <CompanyCard key={company.id} company={company} handleDelete={handleDelete} url={url} />
-                ))}
+            <div><NavBar /></div>
+            <div>
+                <div className="formButton">
+                    {showForm ? <button onClick={handleClick}>Hide Form</button> : <button onClick={handleClick}>Show Form</button>}
+                </div>
+                <div className="formContainer">
+                    {showForm ? <NewCompanyForm addCompany={addCompany} /> : <div></div>}
+                </div>
+                <div className="companyContainer">
+                    {companies.map((company) => (
+                        <CompanyCard key={company.id} company={company} handleDelete={handleDelete} url={url} />
+                    ))}
+                </div>
             </div>
         </div>
     )

@@ -1,6 +1,6 @@
 from config import app
 
-from models import db, Companies, Open_Positions, Contact
+from models import db, Companies, Open_Positions, Contact, Login
 
 if __name__ == '__main__':
     with app.app_context():
@@ -10,6 +10,7 @@ if __name__ == '__main__':
         Companies.query.delete()
         Open_Positions.query.delete()
         Contact.query.delete()
+        Login.query.delete()
 
         db.session.commit()
 
@@ -87,4 +88,18 @@ if __name__ == '__main__':
         ]
 
         db.session.add_all(open_Positions)
+        db.session.commit()
+
+        login = [
+            Login(
+                email = 'alexisaacs18@gmail.com',
+                password = '12345678'
+            ),
+            Login(
+                email = 'example@yahoo.com',
+                password = "abcdefgh"
+            )
+        ]
+
+        db.session.add_all(login)
         db.session.commit()

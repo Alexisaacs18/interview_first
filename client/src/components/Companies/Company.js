@@ -8,7 +8,7 @@ function Company() {
     const navigate = useNavigate()
 
     function navigateToCompanies() {
-        navigate('/')
+        navigate('/companies')
     }
 
     const location = useLocation();
