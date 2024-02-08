@@ -1,6 +1,7 @@
 import React from "react";
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from "react";
+import NavBar from "../../NavBar";
 
 
 function Company() {
@@ -61,6 +62,8 @@ function Company() {
             },
             body: JSON.stringify(data)
         })
+
+        handleClick()
     }
 
     const positionsForCompanies = openPositions.filter((position) =>
@@ -68,40 +71,43 @@ function Company() {
 
     return (
         <div>
-            <div className="page">
-                <button onClick={navigateToCompanies}>Back to Companies</button>
-            </div>
-            <div className="container">
-                <div className="company">
-                    {edit ?
-                        <div>
-                            <h3>Name: {form.name}</h3>
-                            <p>Amount of Employees: {form.amount_of_employees}</p>
-                            <p>Open Positions: {form.total_open_positions}</p>
-                            <button onClick={handleClick}>Edit</button>
-                        </div> :
-                        <div>
-                            <form onSubmit={handleSubmit} className="companyUpdateForm">
-                                <label htmlFor="name">Company Name:</label>
-                                <input onChange={handleChange} value={form.name} type="text" name="name" defaultValue={company.name} />
-
-                                <label htmlFor="amount_of_employees">Amount of Employees:</label>
-                                <input onChange={handleChange} value={form.amount_of_employees} type="text" name="amount_of_employees" defaultValue={company.amount_of_employees} />
-
-                                <label htmlFor="total_open_positions">Total_open_positions:</label>
-                                <input onChange={handleChange} value={form.total_open_positions} type="number" name="total_open_positions" defaultValue={company.total_open_positions} />
-
-                                <button type="submit">Update Company</button>
-                            </form>
-                            <button onClick={handleClick}>Back</button>
-                        </div>}
-
+            <div><NavBar /></div>
+            <div>
+                <div className="page">
+                    <button onClick={navigateToCompanies}>Back to Companies</button>
                 </div>
-                <div className="positions">
-                    <h3>Open Positions</h3>
-                    {positionsForCompanies.map((position) => (
-                        <li>{position.position}</li>
-                    ))}
+                <div className="container">
+                    <div className="company">
+                        {edit ?
+                            <div>
+                                <h3>Name: {form.name}</h3>
+                                <p>Amount of Employees: {form.amount_of_employees}</p>
+                                <p>Open Positions: {form.total_open_positions}</p>
+                                <button onClick={handleClick}>Edit</button>
+                            </div> :
+                            <div>
+                                <form onSubmit={handleSubmit} className="companyUpdateForm">
+                                    <label htmlFor="name">Company Name:</label>
+                                    <input onChange={handleChange} value={form.name} type="text" name="name" defaultValue={company.name} />
+
+                                    <label htmlFor="amount_of_employees">Amount of Employees:</label>
+                                    <input onChange={handleChange} value={form.amount_of_employees} type="text" name="amount_of_employees" defaultValue={company.amount_of_employees} />
+
+                                    <label htmlFor="total_open_positions">Total_open_positions:</label>
+                                    <input onChange={handleChange} value={form.total_open_positions} type="number" name="total_open_positions" defaultValue={company.total_open_positions} />
+
+                                    <button type="submit">Update Company</button>
+                                </form>
+                                <button onClick={handleClick}>Back</button>
+                            </div>}
+
+                    </div>
+                    <div className="positions">
+                        <h3>Open Positions</h3>
+                        {positionsForCompanies.map((position) => (
+                            <li>{position.position}</li>
+                        ))}
+                    </div>
                 </div>
             </div>
         </div>

@@ -299,17 +299,43 @@ def contact(id):
 
     return response
 
-@app.route('/login', methods = ["GET"])
+@app.route('/login', methods = ["GET", "POST"])
 def login():
 
-    logins = Login.query.all()
+    if request.method == "GET":
 
-    logins_to_dict = [login.to_dict() for login in logins]
+        logins = Login.query.all()
 
-    response = make_response(
-        logins_to_dict,
-        200
-    )
+        logins_to_dict = [login.to_dict() for login in logins]
+
+        response = make_response(
+            logins_to_dict,
+            200
+        )
+
+    elif request.method == "POST":
+
+        form_data = request.get_json()
+
+        new_login = Login(
+            email = form_data["email"],
+            password = form_data["password"]
+        )
+
+        db.session.add(new_login)
+        db.session.commit()
+
+        response = make_response(
+            new_login.to_dict(),
+            201
+        )
+
+    else:
+
+        response = make_response(
+            {"error" : "method not allowed"},
+            400
+        )
 
     return response
 

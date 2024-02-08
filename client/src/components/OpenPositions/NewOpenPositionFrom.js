@@ -23,7 +23,7 @@ function NewOpenPositionForm({ addOpenPosition, url }) {
             position_status: true
         },
         validationSchema: formSchema,
-        onSubmit: (values) => {
+        onSubmit: (values, { resetForm }) => {
             fetch('http://127.0.0.1:5555/open_positions', {
                 method: 'POST',
                 headers: {
@@ -35,6 +35,7 @@ function NewOpenPositionForm({ addOpenPosition, url }) {
                 .then((data) => {
                     addOpenPosition(data)
                 })
+            resetForm()
         }
     });
 

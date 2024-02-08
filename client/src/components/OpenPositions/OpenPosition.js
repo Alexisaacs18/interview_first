@@ -1,6 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import NavBar from "../../NavBar";
 
 function OpenPosition() {
 
@@ -99,6 +100,7 @@ function OpenPosition() {
             },
             body: JSON.stringify(data)
         })
+        handleClick()
     }
 
     function getCompany() {
@@ -119,54 +121,57 @@ function OpenPosition() {
 
     return (
         <div>
-            <div className="page">
-                <button onClick={navigateToOpenPositions}>Back to Open Positions</button>
-            </div>
-            <div className="container">
-                <div className="openPosition">
-                    {edit ?
-                        <div>
-                            <h3>Position: {form.position}</h3>
-                            <p>Company: {company.name}</p>
-                            <p>Contact: {contact.name}</p>
-                            <p>Salary Range: {form.salary_range}</p>
-                            {form.position_status ? <p>Status: Open</p> : <p>Status: Closed</p>}
-                            <button onClick={handleClick}>Edit</button>
-                        </div>
-                        :
-                        <div>
-                            <form onSubmit={handleSubmit}>
-                                <label htmlFor="position">Position:</label>
-                                <input onChange={handleChange} value={form.position} type="text" name="position" />
+            <div><NavBar /></div>
+            <div>
+                <div className="page">
+                    <button onClick={navigateToOpenPositions}>Back to Open Positions</button>
+                </div>
+                <div className="container">
+                    <div className="openPosition">
+                        {edit ?
+                            <div>
+                                <h3>Position: {form.position}</h3>
+                                <p>Company: {company.name}</p>
+                                <p>Contact: {contact.name}</p>
+                                <p>Salary Range: {form.salary_range}</p>
+                                {form.position_status ? <p>Status: Open</p> : <p>Status: Closed</p>}
+                                <button onClick={handleClick}>Edit</button>
+                            </div>
+                            :
+                            <div>
+                                <form onSubmit={handleSubmit}>
+                                    <label htmlFor="position">Position:</label>
+                                    <input onChange={handleChange} value={form.position} type="text" name="position" />
 
-                                <label htmlFor="company_id">Company:</label>
-                                <select onChange={handleChange} name="company_id" defaultValue={form.company_id}>
-                                    {companies.map((company) => (
-                                        <option key={company.id} value={company.id} label={company.name} />
-                                    ))}
-                                </select>
+                                    <label htmlFor="company_id">Company:</label>
+                                    <select onChange={handleChange} name="company_id" defaultValue={form.company_id}>
+                                        {companies.map((company) => (
+                                            <option key={company.id} value={company.id} label={company.name} />
+                                        ))}
+                                    </select>
 
-                                <label htmlFor="contact_id">Contact:</label>
-                                <select onChange={handleChange} name="contact_id" defaultValue={form.contact_id}>
-                                    {contacts.map((contact) => (
-                                        <option key={contact.id} value={contact.id} label={contact.name} />
-                                    ))}
-                                </select>
+                                    <label htmlFor="contact_id">Contact:</label>
+                                    <select onChange={handleChange} name="contact_id" defaultValue={form.contact_id}>
+                                        {contacts.map((contact) => (
+                                            <option key={contact.id} value={contact.id} label={contact.name} />
+                                        ))}
+                                    </select>
 
-                                <label htmlFor="salary_range">Salary Range:</label>
-                                <input onChange={handleChange} value={form.salary_range} type="text" name="salary_range" />
+                                    <label htmlFor="salary_range">Salary Range:</label>
+                                    <input onChange={handleChange} value={form.salary_range} type="text" name="salary_range" />
 
-                                <label htmlFor="position_status">Status:</label>
-                                <select onChange={handleChange} value={form.position_status} name="position_status" >
-                                    <option value={true}>Open</option>
-                                    <option value={false}>Closed</option>
-                                </select>
+                                    <label htmlFor="position_status">Status:</label>
+                                    <select onChange={handleChange} value={form.position_status} name="position_status" >
+                                        <option value={true}>Open</option>
+                                        <option value={false}>Closed</option>
+                                    </select>
 
-                                <button type="submit">Update Position</button>
-                            </form>
-                            <button onClick={handleClick}>Back</button>
-                        </div>
-                    }
+                                    <button type="submit">Update Position</button>
+                                </form>
+                                <button onClick={handleClick}>Back</button>
+                            </div>
+                        }
+                    </div>
                 </div>
             </div>
         </div>

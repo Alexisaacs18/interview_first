@@ -17,7 +17,7 @@ function NewCompanyForm({ addCompany }) {
             total_open_positions: 0,
         },
         validationSchema: formSchema,
-        onSubmit: (values) => {
+        onSubmit: (values, { resetForm }) => {
             fetch('http://127.0.0.1:5555/companies', {
                 method: 'POST',
                 headers: {
@@ -29,6 +29,7 @@ function NewCompanyForm({ addCompany }) {
                 .then((data) => {
                     addCompany(data)
                 })
+            resetForm()
         }
     });
 
