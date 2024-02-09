@@ -1,14 +1,34 @@
 from config import app
-from flask import make_response, request
-
+from flask import make_response, request, session, jsonify
+from werkzeug.security import check_password_hash, generate_password_hash
 from models import db, Companies, Open_Positions, Contact, Login
+from flask_jwt_extended import create_access_token,get_jwt,get_jwt_identity, \
+                               unset_jwt_cookies, jwt_required, JWTManager, decode_token
+
+
+app.config['JWT_SECRET_KEY'] = 'my_secret_key'
+
+jwt = JWTManager(app)
+
+def get_login(request):
+    
+    headers = request.headers 
+    access_token = headers.get('Authorization')
+
+    token = access_token.split(' ')[1]
+    login_id = decode_token(token)["sub"]
+    return login_id
+
 
 @app.route("/companies", methods=["GET", "POST"])
+@jwt_required()
 def companies():
+
+    current_user = get_jwt_identity()
 
     if request.method == "GET":
 
-        companies = Companies.query.all()
+        companies = Companies.query.filter(Companies.login_id == current_user).all()
 
         companies_to_dict = [company.to_dict(rules = ("-open_positions", )) for company in companies]
 
@@ -16,24 +36,33 @@ def companies():
             companies_to_dict,
             200
         )
-
+        
     elif request.method == "POST":
 
-        form_data = request.get_json()
+        try:
 
-        new_company = Companies(
-            name = form_data["name"],
-            amount_of_employees = form_data["amount_of_employees"],
-            total_open_positions = form_data["total_open_positions"]
-        )
+            form_data = request.get_json()
 
-        db.session.add(new_company)
-        db.session.commit()
+            new_company = Companies(
+                login_id = current_user,
+                name = form_data["name"],
+                amount_of_employees = form_data["amount_of_employees"],
+                total_open_positions = form_data["total_open_positions"]
+            )
 
-        response = make_response(
-            new_company.to_dict(),
-            201
-        )
+            db.session.add(new_company)
+            db.session.commit()
+
+            response = make_response(
+                new_company.to_dict(),
+                201
+            )
+
+        except Exception as e:
+            
+            db.session.rollback()
+            return jsonify({"error": "Failed to add favorite exercise", "details": str(e)}), 500
+
 
     else:
 
@@ -46,9 +75,12 @@ def companies():
     return response
 
 @app.route("/companies/<int:id>", methods=["GET", "PATCH", "DELETE"])
+@jwt_required()
 def company(id):
 
-    company = Companies.query.filter(Companies.id == id).first()
+    current_user = get_jwt_identity()
+
+    company = Companies.query.filter(Companies.id == id, Companies.login_id == current_user).first()
 
     if company:
 
@@ -101,11 +133,14 @@ def company(id):
     return response
 
 @app.route("/open_positions", methods = ["GET", "POST"])
+@jwt_required()
 def open_positions():
+
+    current_user = get_jwt_identity()
 
     if request.method == "GET":
 
-        open_positions = Open_Positions.query.all()
+        open_positions = Open_Positions.query.filter(Open_Positions.login_id == current_user).all()
 
         open_positions_to_dict = [open_position.to_dict(rules = ("-companies", "-contacts")) for open_position in open_positions] 
 
@@ -119,6 +154,7 @@ def open_positions():
         form_data = request.get_json()
 
         new_open_position = Open_Positions(
+            login_id = current_user,
             company_id = form_data["company_id"],
             contact_id = form_data["contact_id"],
             position = form_data["position"],
@@ -144,9 +180,12 @@ def open_positions():
     return response
 
 @app.route("/open_positions/<int:id>", methods = ["GET", "PATCH", "DELETE"])
+@jwt_required()
 def open_position(id):
 
-    open_position = Open_Positions.query.filter(Open_Positions.id == id).first()
+    current_user = get_jwt_identity()
+
+    open_position = Open_Positions.query.filter(Open_Positions.id == id, Open_Positions.login_id == current_user).first()
 
     if open_position:
 
@@ -199,11 +238,14 @@ def open_position(id):
     return response
 
 @app.route("/contacts", methods = ["GET", "POST"])
+@jwt_required()
 def contacts():
+
+    current_user = get_jwt_identity()
 
     if request.method == "GET":
 
-        contacts = Contact.query.all()
+        contacts = Contact.query.filter(Contact.login_id == current_user).all()
 
         contacts_to_dict = [contact.to_dict(rules = ("-open_positions", "-outreach")) for contact in contacts] 
 
@@ -217,6 +259,7 @@ def contacts():
         form_data = request.get_json()
 
         new_contact = Contact(
+            login_id = current_user,
             name = form_data["name"],
             linkedin_url = form_data["linkedin_url"],
             position = form_data["position"],
@@ -245,9 +288,12 @@ def contacts():
     return response
 
 @app.route("/contacts/<int:id>", methods = ["GET", "PATCH", "DELETE"])
+@jwt_required()
 def contact(id):
 
-    contact = Contact.query.filter(Contact.id == id).first()
+    current_user = get_jwt_identity()
+
+    contact = Contact.query.filter(Contact.id == id, Contact.login_id == current_user).first()
 
     if contact:
 
@@ -306,38 +352,71 @@ def login():
 
         logins = Login.query.all()
 
-        logins_to_dict = [login.to_dict() for login in logins]
+        logins_to_dict = [login.to_dict(rules = ("-companies", "-contacts", "-open_positions")) for login in logins]
 
         response = make_response(
             logins_to_dict,
             200
         )
 
+        return response
+
     elif request.method == "POST":
 
         form_data = request.get_json()
 
-        new_login = Login(
-            email = form_data["email"],
-            password = form_data["password"]
-        )
+        email = form_data["email"]
+        password = form_data["password"]
 
-        db.session.add(new_login)
+        login_email = Login.query.filter_by(email = email).first()
+
+        if not login_email or not login_email.check_password(password):
+            return {"error" : "invalid username or password"}, 401
+        
+        access_token = create_access_token(identity=login_email.id)
+        response = {"access_token":access_token}
+
+        return jsonify(response), 200
+
+@app.route('/signup', methods = ["POST"])
+def signup():
+
+    try:
+
+        form_data = request.get_json()
+
+        email = form_data["email"]
+        password = form_data["password"]
+
+        existing_email = Login.query.filter(Login.email == email).first()
+
+        if existing_email:
+            return jsonify({'Error' : 'Email already exists'}), 400
+        
+        new_email = Login(email = email)
+        new_email.set_password(password)
+
+        db.session.add(new_email)
         db.session.commit()
 
-        response = make_response(
-            new_login.to_dict(),
-            201
-        )
+        access_token = create_access_token(identity=new_email.id)
+        response = {"access token" : access_token}
 
-    else:
+        if not email or not password:
+            return jsonify({"error": "Username and password are required"}), 400
 
-        response = make_response(
-            {"error" : "method not allowed"},
-            400
-        )
+        return jsonify(response), 201
+    
+    except Exception as e:
 
-    return response
+        print("Registration error:", str(e))
+        return jsonify({"error": "An error occurred during registration"}), 500 
+    
+@app.route('/logout', methods = ["POST"])
+def logout():
+
+    session.clear()
+    return jsonify({"message": "logout successful"}), 201
 
 if __name__ == '__main__':
     app.run(port=5555, debug=True)

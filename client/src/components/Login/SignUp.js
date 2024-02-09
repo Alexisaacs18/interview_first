@@ -35,13 +35,19 @@ function SignUp() {
             password: form.password
         }
 
-        fetch(`${url}/login`, {
+        fetch(`${url}/signup`, {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(data)
         })
+            .then((res) =>
+                res.ok ? res.json() : Promise.reject("Failed to register.")
+            )
+            .then((data) => {
+                sessionStorage.setItem('access_token', data.access_token)
+            })
 
         setForm(formOutline)
     }

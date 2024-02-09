@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 
 function ContactCard({ contact, url, handleDelete }) {
 
+    const token = sessionStorage.getItem("access_token")
+
     const navigate = useNavigate()
 
     function navigateToContact() {
@@ -18,7 +20,8 @@ function ContactCard({ contact, url, handleDelete }) {
         fetch(`${url}/contacts/${contact.id}`, {
             method: "DELETE",
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                "Authorization": `Bearer ${token}`
             }
         })
     }

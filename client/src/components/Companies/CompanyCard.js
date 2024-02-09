@@ -4,6 +4,8 @@ import { useNavigate } from "react-router-dom";
 
 function CompanyCard({ company, handleDelete, url }) {
 
+    const token = sessionStorage.getItem("access_token")
+
     const navigate = useNavigate()
 
     function navigateToCompany() {
@@ -19,7 +21,8 @@ function CompanyCard({ company, handleDelete, url }) {
         fetch(`${url}/companies/${company.id}`, {
             method: "DELETE",
             headers: {
-                'Content-Type': "application/json"
+                'Content-Type': "application/json",
+                "Authorization": `Bearer ${token}`
             }
         })
     }

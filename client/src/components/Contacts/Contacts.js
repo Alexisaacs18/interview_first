@@ -6,13 +6,21 @@ import NavBar from "../../NavBar";
 
 function Contacts() {
 
+    const token = sessionStorage.getItem("access_token")
+
     const url = "http://127.0.0.1:5555"
 
     const [contacts, setContacts] = useState([])
     const [showForm, setShowForm] = useState(false)
 
     useEffect(() => {
-        fetch(`${url}/contacts`)
+        fetch(`${url}/contacts`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${token}`
+            }
+        })
             .then((res) => res.json())
             .then((data) => {
                 setContacts(data)
@@ -39,6 +47,9 @@ function Contacts() {
             <div><NavBar /></div>
             <div>
                 <div>
+                    <div className="head">
+                        <h1>Contacts</h1>
+                    </div>
                     <div className="formButton">
                         {showForm ? <button onClick={handleClick}>Hide Form</button> : <button onClick={handleClick}>Show Form</button>}
                     </div>
@@ -47,9 +58,9 @@ function Contacts() {
                     </div>
                 </div>
                 <div className="contactContainer">
-                    {contacts.map((contact) => (
+                    {contacts.length > 0 ? contacts.map((contact) => (
                         <ContactCard key={contact.id} contact={contact} url={url} handleDelete={handleDelete} />
-                    ))}
+                    )) : <div></div>}
                 </div>
             </div>
         </div>

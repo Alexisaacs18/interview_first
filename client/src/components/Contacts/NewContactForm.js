@@ -5,6 +5,8 @@ import * as yup from 'yup';
 
 function NewContactForm({ addContact }) {
 
+    const token = sessionStorage.getItem("access_token")
+
     const formSchema = yup.object({
         name: yup.string().required("Company ID is required."),
         linkedin_url: yup.string().required("Contact ID is required."),
@@ -28,15 +30,16 @@ function NewContactForm({ addContact }) {
             fetch('http://127.0.0.1:5555/contacts', {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    "Authorization": `Bearer ${token}`
                 },
                 body: JSON.stringify(values),
             })
                 .then((res) => res.json())
                 .then((data) => {
                     addContact(data)
+                    resetForm()
                 })
-            resetForm()
         }
     });
 

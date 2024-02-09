@@ -44,15 +44,25 @@ function Login() {
     function handleSubmit(e) {
         e.preventDefault()
 
-        const checkLogin = login.filter((log) => (
-            log.email === form.email && log.password === form.password
-        ))
-
-        if (checkLogin.length === 1) {
-            navigateToCompanies()
-        } else {
-            setError(prev => !prev)
+        const data = {
+            email: form.email,
+            password: form.password
         }
+
+        fetch(`${url}/login`, {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+            .then((res) => res.ok ? res.json() : Promise.reject("failed to login"))
+            .then((data) => {
+                sessionStorage.setItem('access_token', data.access_token)
+                navigateToCompanies()
+            })
+
+        setError(prev => !prev)
     }
 
     return (

@@ -7,6 +7,8 @@ import Company from "../Companies/Company";
 
 function NewOpenPositionForm({ addOpenPosition, url }) {
 
+    const token = sessionStorage.getItem("access_token")
+
     const formSchema = yup.object({
         company_id: yup.number().required("Company ID is required."),
         contact_id: yup.number().required("Contact ID is required."),
@@ -27,7 +29,8 @@ function NewOpenPositionForm({ addOpenPosition, url }) {
             fetch('http://127.0.0.1:5555/open_positions', {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    "Authorization": `Bearer ${token}`
                 },
                 body: JSON.stringify(values),
             })
@@ -43,7 +46,13 @@ function NewOpenPositionForm({ addOpenPosition, url }) {
     const [contacts, setContacts] = useState([])
 
     useEffect(() => {
-        fetch(`${url}/companies`)
+        fetch(`${url}/companies`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${token}`
+            },
+        })
             .then((res) => res.json())
             .then((data) => {
                 setCompanies(data)
@@ -51,7 +60,13 @@ function NewOpenPositionForm({ addOpenPosition, url }) {
     }, [])
 
     useEffect(() => {
-        fetch(`${url}/contacts`)
+        fetch(`${url}/contacts`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${token}`
+            },
+        })
             .then((res) => res.json())
             .then((data) => {
                 setContacts(data)

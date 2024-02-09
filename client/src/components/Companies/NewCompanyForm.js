@@ -5,6 +5,8 @@ import * as yup from 'yup';
 
 function NewCompanyForm({ addCompany }) {
 
+    const token = sessionStorage.getItem("access_token")
+
     const formSchema = yup.object({
         name: yup.string().required("Company name is required."),
         amount_of_employees: yup.string().required("Company amount of employees is required."),
@@ -21,12 +23,14 @@ function NewCompanyForm({ addCompany }) {
             fetch('http://127.0.0.1:5555/companies', {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    "Authorization": `Bearer ${token}`
                 },
                 body: JSON.stringify(values),
             })
                 .then((res) => res.json())
                 .then((data) => {
+                    console.log(data)
                     addCompany(data)
                 })
             resetForm()

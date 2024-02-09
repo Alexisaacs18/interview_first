@@ -6,6 +6,8 @@ import NavBar from "../../NavBar";
 
 function Company() {
 
+    const token = sessionStorage.getItem("access_token")
+
     const navigate = useNavigate()
 
     function navigateToCompanies() {
@@ -28,7 +30,13 @@ function Company() {
     const [form, setForm] = useState(formOutline)
 
     useEffect(() => {
-        fetch(`${url}/open_positions`)
+        fetch(`${url}/open_positions`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${token}`
+            }
+        })
             .then((res) => res.json())
             .then((data) => {
                 setOpenPositions(data)
@@ -58,7 +66,8 @@ function Company() {
         fetch(`${url}/companies/${company.id}`, {
             method: "PATCH",
             headers: {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${token}`
             },
             body: JSON.stringify(data)
         })

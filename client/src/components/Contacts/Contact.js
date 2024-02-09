@@ -5,6 +5,8 @@ import NavBar from "../../NavBar";
 
 function Contact() {
 
+    const token = sessionStorage.getItem("access_token")
+
     const navigate = useNavigate()
 
     function navigateToContacts() {
@@ -83,7 +85,8 @@ function Contact() {
         fetch(`${url}/contacts/${contact.id}`, {
             method: "PATCH",
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                "Authorization": `Bearer ${token}`
             },
             body: JSON.stringify(data)
         })
@@ -103,7 +106,8 @@ function Contact() {
         fetch(`${url}/contacts/${contact.id}`, {
             method: "PATCH",
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                "Authorization": `Bearer ${token}`
             },
             body: JSON.stringify(data)
         })

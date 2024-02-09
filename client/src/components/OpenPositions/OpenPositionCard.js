@@ -4,13 +4,21 @@ import { useNavigate } from "react-router-dom";
 
 function OpenPositionCard({ position, url, handleDelete }) {
 
+    const token = sessionStorage.getItem("access_token")
+
     const navigate = useNavigate()
 
     const [company, setCompany] = useState({})
     const [contact, setContact] = useState({})
 
     useEffect(() => {
-        fetch(`${url}/companies/${position.company_id}`)
+        fetch(`${url}/companies/${position.company_id}`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${token}`
+            }
+        })
             .then((res) => res.json())
             .then((data) => {
                 setCompany(data)
@@ -18,7 +26,13 @@ function OpenPositionCard({ position, url, handleDelete }) {
     }, [])
 
     useEffect(() => {
-        fetch(`${url}/contacts/${position.contact_id}`)
+        fetch(`${url}/contacts/${position.contact_id}`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${token}`
+            }
+        })
             .then((res) => res.json())
             .then((data) => {
                 setContact(data)
@@ -44,7 +58,8 @@ function OpenPositionCard({ position, url, handleDelete }) {
         fetch(`${url}/open_positions/${position.id}`, {
             method: "DELETE",
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                "Authorization": `Bearer ${token}`
             }
         })
     }

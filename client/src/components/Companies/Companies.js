@@ -9,11 +9,21 @@ function Companies() {
 
     const url = "http://127.0.0.1:5555"
 
+    const token = sessionStorage.getItem("access_token")
+
+    console.log(token)
+
     const [companies, setCompanies] = useState([])
     const [showForm, setShowForm] = useState(false)
 
     useEffect(() => {
-        fetch(`${url}/companies`)
+        fetch(`${url}/companies`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${token}`
+            },
+        })
             .then((res) => res.json())
             .then((data) => {
                 setCompanies(data)
@@ -41,6 +51,9 @@ function Companies() {
         <div>
             <div><NavBar /></div>
             <div>
+                <div className="head">
+                    <h1>Companies</h1>
+                </div>
                 <div className="formButton">
                     {showForm ? <button onClick={handleClick}>Hide Form</button> : <button onClick={handleClick}>Show Form</button>}
                 </div>
@@ -48,9 +61,9 @@ function Companies() {
                     {showForm ? <NewCompanyForm addCompany={addCompany} /> : <div></div>}
                 </div>
                 <div className="companyContainer">
-                    {companies.map((company) => (
+                    {companies.length > 0 ? companies.map((company) => (
                         <CompanyCard key={company.id} company={company} handleDelete={handleDelete} url={url} />
-                    ))}
+                    )) : <div></div>}
                 </div>
             </div>
         </div>

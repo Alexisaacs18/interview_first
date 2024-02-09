@@ -2,6 +2,11 @@ body {
   background-image: url("../../pictures/appbackground.png");
 }
 
+.head {
+  text-align: center;
+  color: aliceblue;
+}
+
 .nav {
   background-image: url("../../pictures/headerBackground.png");
   align-items: center;

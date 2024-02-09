@@ -5,6 +5,8 @@ import NavBar from "../../NavBar";
 
 function OpenPosition() {
 
+    const token = sessionStorage.getItem("access_token")
+
     const navigate = useNavigate()
 
     function navigateToOpenPositions() {
@@ -96,7 +98,8 @@ function OpenPosition() {
         fetch(`${url}/open_positions/${prop.position.id}`, {
             method: "PATCH",
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                "Authorization": `Bearer ${token}`
             },
             body: JSON.stringify(data)
         })

@@ -6,13 +6,21 @@ import NavBar from "../../NavBar";
 
 function OpenPositions() {
 
+    const token = sessionStorage.getItem("access_token")
+
     const url = "http://127.0.0.1:5555"
 
     const [openPositions, setOpenPositions] = useState([])
     const [showForm, setShowForm] = useState(false)
 
     useEffect(() => {
-        fetch(`${url}/open_positions`)
+        fetch(`${url}/open_positions`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${token}`
+            }
+        })
             .then((res) => res.json())
             .then((data) => {
                 setOpenPositions(data)
@@ -38,6 +46,9 @@ function OpenPositions() {
         <div>
             <div><NavBar /></div>
             <div>
+                <div className="head">
+                    <h1>Open Positions</h1>
+                </div>
                 <div className="formButton">
                     {showForm ? <button onClick={handleClick}>Hide Form</button> : <button onClick={handleClick}>Show Form</button>}
                 </div>
@@ -45,9 +56,9 @@ function OpenPositions() {
                     {showForm ? <NewOpenPositionForm addOpenPosition={addOpenPosition} url={url} /> : <div></div>}
                 </div>
                 <div className="openPositionContainer">
-                    {openPositions.map((position) => (
+                    {openPositions.length > 0 ? openPositions.map((position) => (
                         <OpenPositionCard key={position.id} position={position} url={url} handleDelete={handleDelete} />
-                    ))}
+                    )) : <div></div>}
                 </div>
             </div>
         </div>
