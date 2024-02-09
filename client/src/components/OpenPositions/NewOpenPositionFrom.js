@@ -18,8 +18,8 @@ function NewOpenPositionForm({ addOpenPosition, url }) {
 
     const formik = useFormik({
         initialValues: {
-            company_id: null,
-            contact_id: null,
+            company_id: 1,
+            contact_id: 1,
             position: '',
             salary_range: '',
             position_status: true

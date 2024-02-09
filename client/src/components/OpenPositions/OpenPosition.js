@@ -34,7 +34,13 @@ function OpenPosition() {
     const [contact, setContact] = useState({})
 
     useEffect(() => {
-        fetch(`${url}/companies`)
+        fetch(`${url}/companies`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${token}`
+            }
+        })
             .then((res) => res.json())
             .then((data) => {
                 setCompanies(data)
@@ -42,7 +48,13 @@ function OpenPosition() {
     }, [])
 
     useEffect(() => {
-        fetch(`${url}/contacts`)
+        fetch(`${url}/contacts`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${token}`
+            }
+        })
             .then((res) => res.json())
             .then((data) => {
                 setContacts(data)
@@ -107,7 +119,13 @@ function OpenPosition() {
     }
 
     function getCompany() {
-        fetch(`${url}/companies/${form.company_id}`)
+        fetch(`${url}/companies/${form.company_id}`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${token}`
+            }
+        })
             .then((res) => res.json())
             .then((data) => {
                 setCompany(data)
@@ -115,7 +133,13 @@ function OpenPosition() {
     }
 
     function getContact() {
-        fetch(`${url}/contacts/${form.contact_id}`)
+        fetch(`${url}/contacts/${form.contact_id}`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${token}`
+            }
+        })
             .then((res) => res.json())
             .then((data) => {
                 setContact(data)
