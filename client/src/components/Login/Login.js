@@ -56,13 +56,15 @@ function Login() {
             },
             body: JSON.stringify(data)
         })
-            .then((res) => res.ok ? res.json() : Promise.reject("failed to login"))
+            .then((res) => res.json())
             .then((data) => {
-                sessionStorage.setItem('access_token', data.access_token)
-                navigateToCompanies()
+                if (data.access_token) {
+                    sessionStorage.setItem('access_token', data.access_token)
+                    navigateToCompanies()
+                } else {
+                    setError(prev => !prev)
+                }
             })
-
-        setError(prev => !prev)
     }
 
     return (

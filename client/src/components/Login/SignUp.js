@@ -19,6 +19,7 @@ function SignUp() {
     }
 
     const [form, setForm] = useState(formOutline)
+    const [error, setError] = useState(false)
 
     function handleChange(e) {
         setForm({
@@ -42,11 +43,13 @@ function SignUp() {
             },
             body: JSON.stringify(data)
         })
-            .then((res) =>
-                res.ok ? res.json() : Promise.reject("Failed to register.")
-            )
+            .then((res) => res.json())
             .then((data) => {
-                sessionStorage.setItem('access_token', data.access_token)
+                if (data.access_token) {
+                    sessionStorage.setItem('access_token', data.access_token)
+                } else {
+                    setError(prev => !prev)
+                }
             })
 
         setForm(formOutline)
@@ -66,6 +69,7 @@ function SignUp() {
                         <button type="submit">Enter</button>
                     </form>
                     <button onClick={navigateToLogin}>Login</button>
+                    {error ? <div><p>Email Already Exists</p></div> : <div></div>}
                 </div>
             </div>
         </div>
