@@ -1,5 +1,5 @@
 body {
-  background-image: url("../../pictures/appbackground.png");
+  background-image: url("../../../pictures/appbackground.png");
 }
 
 .head {
@@ -8,7 +8,7 @@ body {
 }
 
 .nav {
-  background-image: url("../../pictures/headerBackground.png");
+  background-image: url("../../../pictures/headerBackground.png");
   align-items: center;
   color: white;
   justify-content: space-between;
@@ -58,7 +58,7 @@ nav h1 {
 }
 
 .header {
-  background-image: url("../../pictures/headerBackground.png");
+  background-image: url("../../../pictures/headerBackground.png");
   color: white;
   padding: 10px 20px;
   padding-bottom: 40px;

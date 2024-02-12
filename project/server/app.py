@@ -23,19 +23,6 @@ def get_login(request):
     login_id = decode_token(token)["sub"]
     return login_id
 
-app = Flask(
-    __name__,
-    static_url_path='',
-    static_folder='../client/build',
-    template_folder='../client/build'
-)
-
-@app.route('/')
-@app.route('/<int:id>')
-def index(id=0):
-    return render_template("index.html")
-
-
 @app.route("/companies", methods=["GET", "POST"])
 @jwt_required()
 def companies():
