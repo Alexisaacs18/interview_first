@@ -51,8 +51,8 @@ function NewOpenPositionForm({ addOpenPosition, url }) {
 
     const formik = useFormik({
         initialValues: {
-            company_id: 1,
-            contact_id: 1,
+            company_id: null,
+            contact_id: null,
             position: '',
             salary_range: '',
             position_status: true
@@ -87,8 +87,8 @@ function NewOpenPositionForm({ addOpenPosition, url }) {
                         id="company_id"
                         name="company_id"
                         onChange={formik.handleChange}
-                        value={formik.values.company_id}
                     >
+                        <option value="" disabled selected>select your option</option>
                         {companies.map((company) => (
                             <option key={company.id} value={company.id} label={company.name} />
                         ))}
@@ -100,8 +100,8 @@ function NewOpenPositionForm({ addOpenPosition, url }) {
                         id="contact_id"
                         name="contact_id"
                         onChange={formik.handleChange}
-                        value={formik.values.contact_id}
                     >
+                        <option value="" disabled selected>select your option</option>
                         {contacts.map((contact) => (
                             <option key={contact.id} value={contact.id} label={contact.name} />
                         ))}
