@@ -400,7 +400,7 @@ def signup():
         db.session.commit()
 
         access_token = create_access_token(identity=new_email.id)
-        response = {"access token" : access_token}
+        response = {"access_token" : access_token}
 
         if not email or not password:
             return jsonify({"error": "Username and password are required"}), 400

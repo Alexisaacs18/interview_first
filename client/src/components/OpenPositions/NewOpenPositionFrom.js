@@ -16,32 +16,6 @@ function NewOpenPositionForm({ addOpenPosition, url }) {
         salary_range: yup.string().required("Contact ID is required."),
     });
 
-    const formik = useFormik({
-        initialValues: {
-            company_id: 1,
-            contact_id: 1,
-            position: '',
-            salary_range: '',
-            position_status: true
-        },
-        validationSchema: formSchema,
-        onSubmit: (values, { resetForm }) => {
-            fetch('http://127.0.0.1:5555/open_positions', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    "Authorization": `Bearer ${token}`
-                },
-                body: JSON.stringify(values),
-            })
-                .then((res) => res.json())
-                .then((data) => {
-                    addOpenPosition(data)
-                })
-            resetForm()
-        }
-    });
-
     const [companies, setCompanies] = useState([])
     const [contacts, setContacts] = useState([])
 
@@ -72,6 +46,36 @@ function NewOpenPositionForm({ addOpenPosition, url }) {
                 setContacts(data)
             })
     }, [])
+
+    console.log(companies)
+
+    const formik = useFormik({
+        initialValues: {
+            company_id: 1,
+            contact_id: 1,
+            position: '',
+            salary_range: '',
+            position_status: true
+        },
+        validationSchema: formSchema,
+        onSubmit: (values, { resetForm }) => {
+            fetch('http://127.0.0.1:5555/open_positions', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    "Authorization": `Bearer ${token}`
+                },
+                body: JSON.stringify(values),
+            })
+                .then((res) => res.json())
+                .then((data) => {
+                    addOpenPosition(data)
+                })
+            resetForm()
+        }
+    });
+
+
 
     return (
         <div className="positionForm" id="positionForm">
