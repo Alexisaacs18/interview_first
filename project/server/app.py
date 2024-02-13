@@ -1,5 +1,5 @@
 from config import app
-from flask import Flask, render_template
+from flask import render_template
 from dotenv import load_dotenv
 from flask import make_response, request, session, jsonify
 from werkzeug.security import check_password_hash, generate_password_hash
