@@ -1,5 +1,5 @@
 from config import app
-from flask import Flask
+from flask import Flask, render_template
 from dotenv import load_dotenv
 from flask import make_response, request, session, jsonify
 from werkzeug.security import check_password_hash, generate_password_hash
@@ -9,6 +9,17 @@ from flask_jwt_extended import create_access_token,get_jwt,get_jwt_identity, \
 
 
 load_dotenv()
+
+# app = Flask(
+#     __name__,
+#     static_url_path='',
+#     static_folder='../client/build',
+#     template_folder='../client/build'
+# )
+
+# app.config.from_object(app)
+
+# db.init_app(app)
 
 app.config['JWT_SECRET_KEY'] = 'my_secret_key'
 
@@ -22,6 +33,11 @@ def get_login(request):
     token = access_token.split(' ')[1]
     login_id = decode_token(token)["sub"]
     return login_id
+
+@app.route('/')
+@app.route('/<int:id>')
+def index(id=0):
+    return render_template("index.html")
 
 @app.route("/companies", methods=["GET", "POST"])
 @jwt_required()
