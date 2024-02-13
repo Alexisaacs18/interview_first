@@ -10,17 +10,6 @@ from flask_jwt_extended import create_access_token,get_jwt,get_jwt_identity, \
 
 load_dotenv()
 
-# app = Flask(
-#     __name__,
-#     static_url_path='',
-#     static_folder='../client/build',
-#     template_folder='../client/build'
-# )
-
-# app.config.from_object(app)
-
-# db.init_app(app)
-
 app.config['JWT_SECRET_KEY'] = 'my_secret_key'
 
 jwt = JWTManager(app)
