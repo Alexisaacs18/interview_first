@@ -20,7 +20,7 @@ function NewCompanyForm({ addCompany }) {
         },
         validationSchema: formSchema,
         onSubmit: (values, { resetForm }) => {
-            fetch('http://0.0.0.0:10000/companies', {
+            fetch('https://0.0.0.0:10000/companies', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

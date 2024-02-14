@@ -7,7 +7,7 @@ import NavBar from "../../NavBar";
 
 function Companies() {
 
-    const url = "http://0.0.0.0:10000"
+    const url = "https://0.0.0.0:10000"
 
     const token = sessionStorage.getItem("access_token")
 

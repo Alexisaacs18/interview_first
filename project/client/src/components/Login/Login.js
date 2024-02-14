@@ -15,7 +15,7 @@ function Login() {
         navigate('/signup')
     }
 
-    const url = "http://0.0.0.0:10000"
+    const url = "https://0.0.0.0:10000"
 
     const formOutline = {
         email: '',
