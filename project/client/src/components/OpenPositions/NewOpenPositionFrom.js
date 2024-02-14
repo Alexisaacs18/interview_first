@@ -58,7 +58,7 @@ function NewOpenPositionForm({ addOpenPosition, url }) {
         },
         validationSchema: formSchema,
         onSubmit: (values, { resetForm }) => {
-            fetch('https://0.0.0.0:10000/open_positions', {
+            fetch('http://0.0.0.0:10000/open_positions', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
