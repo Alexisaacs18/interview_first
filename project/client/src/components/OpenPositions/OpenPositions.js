@@ -8,7 +8,7 @@ function OpenPositions() {
 
     const token = sessionStorage.getItem("access_token")
 
-    const url = "http://0.0.0.0:10000"
+    const url = "https://0.0.0.0:10000"
 
     const [openPositions, setOpenPositions] = useState([])
     const [showForm, setShowForm] = useState(false)

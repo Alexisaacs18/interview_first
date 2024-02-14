@@ -16,7 +16,7 @@ function OpenPosition() {
     const location = useLocation()
     const prop = location.state
 
-    const url = "http://0.0.0.0:10000"
+    const url = "https://0.0.0.0:10000"
 
     const formOutline = {
         company_id: prop.position.company_id,
