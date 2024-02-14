@@ -1,5 +1,4 @@
 import React from "react";
-import Company from "./Company";
 import { useNavigate } from "react-router-dom";
 
 function CompanyCard({ company, handleDelete, url }) {

@@ -1,6 +1,6 @@
 import React from "react";
-import { json, useLocation, useNavigate } from 'react-router-dom';
-import { useEffect, useState } from "react";
+import { useLocation, useNavigate } from 'react-router-dom';
+import { useState } from "react";
 import NavBar from "../../NavBar";
 
 function Contact() {

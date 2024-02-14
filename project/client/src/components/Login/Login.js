@@ -1,5 +1,5 @@
 import React from "react";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Header from "./Header";
 
@@ -22,17 +22,8 @@ function Login() {
         password: ''
     }
 
-    const [login, setLogin] = useState([])
     const [form, setForm] = useState(formOutline)
     const [error, setError] = useState(false)
-
-    useEffect(() => {
-        fetch(`${url}/login`)
-            .then((res) => res.json())
-            .then((data) => {
-                setLogin(data)
-            })
-    }, [])
 
     function handleChange(e) {
         setForm({
