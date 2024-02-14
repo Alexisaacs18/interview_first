@@ -8,7 +8,7 @@ function Contacts() {
 
     const token = sessionStorage.getItem("access_token")
 
-    const url = "http://0.0.0.0:10000"
+    const url = "http://127.0.0.1:5555"
 
     const [contacts, setContacts] = useState([])
     const [showForm, setShowForm] = useState(false)

@@ -13,7 +13,7 @@ function Contact() {
         navigate('/contacts')
     }
 
-    const url = "http://0.0.0.0:10000"
+    const url = "http://127.0.0.1:5555"
 
     const location = useLocation();
     const contact = location.state;

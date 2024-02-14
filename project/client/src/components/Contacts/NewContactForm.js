@@ -27,7 +27,7 @@ function NewContactForm({ addContact }) {
         },
         validationSchema: formSchema,
         onSubmit: (values, { resetForm }) => {
-            fetch('http://0.0.0.0:10000/contacts', {
+            fetch('http://127.0.0.1:5555/contacts', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
